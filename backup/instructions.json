@@ -1,0 +1,67 @@
+{   
+    "1.21.8": {
+        "fabric": 
+        "loaders": {
+            "fabric": "fabric-api-0.133.4+1.21.8"
+        },
+        "dependencies": {
+            "cloth-config": "cloth-config-19.0.147-fabric",
+            "creative-core": "CreativeCore_FABRIC_v2.14.6_mc1.21.8",
+            "entity-model-features": "entity_model_features_1.21.6-fabric-3.0.1",
+            "entity-texture-features": "entity_texture_features_1.21.6-fabric-7.0.2",
+            "yet-another-config-lib": "yet_another_config_lib_v3-3.7.1+1.21.6-fabric"
+        },
+        "mods": {
+            "iris": {
+                "jar": "iris-fabric-1.9.1+mc1.21.7"
+            },
+            "sodium": {
+                "jar": "sodium-fabric-0.6.13+mc1.21.6"
+            },
+            "ambient-sounds": {
+                "jar": "AmbientSounds_FABRIC_v6.2.2_mc1.21.8"
+            },
+            "better-clouds": {
+                "jar": "better-clouds-1.10.5-alpha+1.21.8-fabric.rev.820b462"
+            },
+            "blur": {
+                "jar": "blur-fabric-5.2.2+1.21.6"
+            },
+            "camera-overhaul": {
+                "jar": "CameraOverhaul-v2.0.5-fabric+mc[1.21.5-1.21.8]"
+            },
+            "cave-dust": {
+                "jar": "cave_dust-3.0.1"
+            },
+            "enhanced-visuals": {
+                "jar": "EnhancedVisuals_FABRIC_v1.8.24_mc1.21.8"
+            },
+            "falling-leaves": {
+                "jar": "fallingleaves-2.0.1+1.21.5"
+            },
+            "hold-my-items": {
+                "jar": "HMI 5.0H1 1.21.6+"
+            },
+            "particle-rain": {
+                "jar": "particlerain-4.0.0-alpha.3+1.21.6-fabric"
+            },
+            "presence-footsteps": {
+                "jar": "PresenceFootsteps-1.11.1+1.21.7"
+            },
+            "sound-physics": {
+                "jar": "sound-physics-remastered-fabric-1.21.8-1.4.15"
+            },
+            "wakes": {
+                "jar": "wakes-0.4.3+1.21.8"
+            }
+        },
+        "resourcepacks": {
+            "fresh-animations": {
+                "zip": "FreshAnimations_v1.10.1"
+            },
+            "enhanced-visuals-pixelated": {
+                "zip": "Pixelated_v1.3.5_EnhancedVisuals(nox_cgt)"
+            }
+        }
+    }
+}
