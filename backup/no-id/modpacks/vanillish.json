@@ -1,0 +1,20 @@
+{
+    "version": "1.21.8",
+    "loader": "fabric",
+    "mods": [
+        "hold-my-items",
+        "better-clouds",
+        "blur",
+        "camera-overhaul",
+        "enhanced-visuals",
+        "falling-leaves",
+        "particle-rain",
+        "presence-footsteps",
+        "sound-physics",
+        "wakes"
+    ],
+    "resourcepacks": [
+        "fresh-animations",
+        "enhanced-visuals-pixelated"
+    ]
+}
