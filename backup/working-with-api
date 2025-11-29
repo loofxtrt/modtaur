@@ -1,0 +1,59 @@
+from pathlib import Path
+import shutil
+import json
+import requests
+
+DOTMINECRAFT = Path.home() / '.minecraft'
+API_BASE = 'https://api.modrinth.com/v2'
+HEADERS = {"User-Agent": "modtaur/0.1"}
+
+def normalize_jar_file(file: Path | str):
+    normalized = str(file)
+    if not normalized.endswith('.jar'):
+        normalized += '.jar'
+
+    if isinstance(file, str):
+        normalized = Path(normalized)
+
+    return normalized
+
+def download_from_modrinth(slug: str, version: str, loader: str = 'fabric'):
+    url = f'{API_BASE}/project/{slug}/version'
+    
+    resp = requests.get(url, headers=HEADERS)
+    resp.raise_for_status()
+    resp = resp.json()
+
+    target = None
+    for v in resp:
+        game_versions = v.get('game_versions')
+        if not version in game_versions:
+            continue
+
+        loaders = v.get('loaders')
+        if not loader in loaders:
+            continue
+
+        target = v
+        break
+    
+    if target is None:
+        print('alvo não encontrado')
+        return
+    
+    files = target.get('files')
+    if len(files) > 1:
+        print('não é suportado mais de um arquivo')
+        return
+
+    jar = files[0].get('url')
+    filename = files[0].get('filename')
+
+    down = requests.get(jar, stream=True)
+    down.raise_for_status()
+
+    with Path(f'./tests/{filename}').open('wb') as dest:
+        for chunk in down.iter_content(chunk_size=8192):
+            dest.write(chunk)
+
+download_from_modrinth('sodium', '1.20.1', 'fabric')

@@ -1,0 +1,40 @@
+from rich.console import Console
+from rich.text import Text
+
+def _log(msg, level, title: str | None = None):
+    # cores são baseadas na cor da logo do modrinth, com hue mudado
+    level_colors = {
+        'info': '#1b8fd9',
+        'success': '#1bd96a', # cor original,
+        'error': '#d91b47',
+        'warning': '#d9bd1b'
+    }
+
+    # 󱍔 󱌣 󰖷
+    color = level_colors.get(level)
+
+    text = Text()
+    text.append('󱍔', color)
+    text.append(' ')
+    if title:
+        if not title.endswith(':'):
+            title += ':'
+        
+        text.append(title, style=f'bold {color}')
+        text.append(' ')
+    text.append(msg)
+    
+    console = Console()
+    console.print(text)
+
+def success(msg, title: str | None = None):
+    _log(msg, 'success', title)
+
+def info(msg, title: str | None = None):
+    _log(msg, 'info', title)
+
+def warning(msg, title: str | None = None):
+    _log(msg, 'warning', title)
+
+def error(msg, title: str | None = None):
+    _log(msg, 'error', title)

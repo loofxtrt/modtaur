@@ -1,0 +1,22 @@
+{
+    "version": "1.21.8",
+    "loader": "fabric",
+    "slugs": [
+        "sodium",
+        "iris",
+        "sound-physics-remastered",
+        "presence-footsteps",
+        "ambientsounds",
+        "fallingleaves",
+        "enhancedvisuals",
+        "particle-rain",
+        "blur-plus",
+        "particular",
+        "cave-dust",
+        "wakes",
+        "better-clouds",
+        "cameraoverhaul",
+        "hold-my-items",
+        "modmenu"
+    ]
+}
