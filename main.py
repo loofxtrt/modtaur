@@ -263,7 +263,7 @@ def resolve_project_downloading(
             subdown = dir_predownloaded / version
         else:
             subdown = dir_predownloaded / version / 'dependencies'
-        subdown.mkdir(exist_ok=True)
+        subdown.mkdir(exist_ok=True, parents=True)
         shutil.copy2(dest, subdown)
 
 def load_modpack(modpack: Path, delete_previous: bool = True):
@@ -305,4 +305,5 @@ def load_modpack(modpack: Path, delete_previous: bool = True):
         resolve_project_downloading(s, ctx)
 
 #download_from_modrinth('sodium', '1.20.1', 'fabric')
-load_modpack(Path('./modpacks/visuals.json'))
+#load_modpack(Path('./modpacks/visuals.json'))
+load_modpack(Path('./modpacks/construction.json'))

@@ -1,0 +1,32 @@
+{
+    "version": "1.20.1",
+    "loader": "fabric",
+    "slugs": [
+        "create-steam-n-rails",
+        "create-pantographs-and-wires",
+        "simple-copper-pipes",
+        "happiness-is-a-warm-gun",
+        "vics-point-blank",
+        "decorative-blocks",
+        "bellsandwhistles",
+        "diagonal-windows",
+        "macaws-furniture",
+        "hearth-and-home",
+        "another-furniture",
+        "building-but-better",
+        "connectiblechains",
+        "create-deco",
+        "lets-do-meadow",
+        "grass-overhaul",
+        "beautify-refabricated",
+        "macaws-windows",
+        "twigs",
+        "lets-do-beachparty",
+        "macaws-fences-and-walls",
+        "create-fabric",
+        "water-colors-mod",
+        "enchanted-vertical-slabs",
+        "supplementaries",
+        "diagonal-fences"
+    ]
+}
