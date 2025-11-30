@@ -1,53 +1,81 @@
+from contextlib import contextmanager
+
 from rich.console import Console
 from rich.text import Text
+from rich.live import Live
+from rich.spinner import Spinner
 
-def _log(msg, level, title: str | None = None, title_max: int = 20, nerdfont_icon: str = '󱍔'):
-    # cores são baseadas na cor da logo do modrinth, com hue mudado
-    level_colors = {
-        'info': '#1b8fd9',
-        'success': '#1bd96a', # cor original,
-        'error': '#d91b47',
-        'warning': '#d9bd1b'
-    }
+# cores são baseadas na cor da logo do modrinth, com hue mudado
+LEVEL_COLORS = {
+    'info': '#1b8fd9',
+    'success': '#1bd96a', # cor original
+    'error': '#d91b47',
+    'warning': '#d9bd1b'
+}
+DEFAULT_NERDFONT_ICON = '󱍔'
 
-    # 󱍔 󱌣 󰖷 󰒓 os ícones são nf-md
-    color = level_colors.get(level)
-
-    text = Text()
-    text.append(nerdfont_icon, color)
-    text.append(' ')
-    if title:
-        #title = title.ljust(30)
-        #if not title.endswith(':'):
-            #title += ':'
-
+def _title_appender(text: Text, title: str, style: str, title_max: int | None = 20):
+    if title_max:
         if len(title) > title_max:
             title = title[:-1]
             title += '…' # ellipsis em vez de pontos pra ocupar menos espaço
         title = title.ljust(title_max + 4)
 
-        text.append(title, style=f'bold {color}')
-        text.append(' ')
+    text.append(title, style=style)
+    text.append(' ')
+
+def _log(msg, level, title: str | None = None, nerdfont_icon: str = DEFAULT_NERDFONT_ICON):
+    # 󱍔 󱌣 󰖷 󰒓 󰗝 󱀥 os ícones são nf-md
+    style = f'bold {LEVEL_COLORS.get(level)}'
+
+    text = Text()
+    text.append(nerdfont_icon, style)
+    text.append(' ')
+    if title:
+        _title_appender(text, title, style)
     text.append(msg)
     
     console = Console()
     console.print(text)
 
-def success(msg, title: str | None = None):
-    _log(msg, 'success', title=title)
+def success(msg, title: str | None = None, nerdfont_icon: str = DEFAULT_NERDFONT_ICON):
+    _log(msg, 'success', title=title, nerdfont_icon=nerdfont_icon)
 
-def info(msg, title: str | None = None):
-    _log(msg, 'info', title=title)
+def info(msg, title: str | None = None, nerdfont_icon: str = DEFAULT_NERDFONT_ICON):
+    _log(msg, 'info', title=title, nerdfont_icon=nerdfont_icon)
 
-def warning(msg, title: str | None = None):
-    _log(msg, 'warning', title=title)
+def warning(msg, title: str | None = None, nerdfont_icon: str = DEFAULT_NERDFONT_ICON):
+    _log(msg, 'warning', title=title, nerdfont_icon=nerdfont_icon)
 
-def error(msg, title: str | None = None):
-    _log(msg, 'error', title=title)
+def error(msg, title: str | None = None, nerdfont_icon: str = DEFAULT_NERDFONT_ICON):
+    _log(msg, 'error', title=title, nerdfont_icon=nerdfont_icon)
+
+@contextmanager
+def spinner(msg = 'downloading...', title: str | None = None):
+    style = f'bold {LEVEL_COLORS.get('success')}'
+
+    text = Text()
+    if title:
+        _title_appender(text, title, style)
+    text.append(msg)
+
+    spinner = Spinner('dots', text, style=style)
+    console = Console()
+    with Live(spinner, refresh_per_second=10, console=console) as live:
+        try:
+            yield
+        finally:
+            final = Text()
+            final.append(DEFAULT_NERDFONT_ICON, style)
+            final.append(' ')
+            if title:
+                _title_appender(final, title, style)
+            final.append('download concluído')
+            live.update(final)
 
 def modpack_init(name: str, count: int, version: str, loader: str):
     # logger especial só pro momento em que uma leitura de modpack começa
-    style = '#1bd96a bold'
+    style = f'bold {LEVEL_COLORS.get('success')}'
     text = Text()
     text.append('iniciando o carregamento de ')
     text.append(str(count), style)

@@ -1,0 +1,212 @@
+from pathlib import Path
+import shutil
+import json
+import requests
+
+import logger
+
+DOTMINECRAFT = Path.home() / '.minecraft'
+API_BASE = 'https://api.modrinth.com/v2'
+HEADERS = {"User-Agent": "modtaur/0.1"}
+
+def download_jar(url: str, filename: str, destination_dir: Path):
+    """
+    baixa o .jar atribuído a um mod. os valores que identificam esse jar
+    devem ter sido anteriormente já extraído dos dados do projeto
+    
+    args:
+        url:
+            url do jar. geralemente fica em:
+            0 > files > 0 > url
+            com 0 podendo variar dependendo do índice
+        
+        filename:
+            o nome do arquivo final,
+            também é encontrado no mesmo nível da url
+        
+        destination_dir:
+            lugar de destino do arquivo baixado
+            geralmente é a .minecraft/mods
+    """
+
+    destination = destination_dir / filename
+    
+    down = requests.get(url, stream=True) # stream baixa em chunks
+    down.raise_for_status()
+
+    # write bytes, baixa em chunks de 8192 mb
+    # o programa não inicia o próximo até a conclusão desse
+    with destination.open('wb') as dest:
+        for chunk in down.iter_content(chunk_size=8192):
+            dest.write(chunk)
+
+    return destination
+
+def get_project_data(slug: str, version: str, loader: str = 'fabric'):
+    """
+    obtém os dados de um projeto do modrinth
+    projetos se referem a mods, resourcepacks e datapacks
+
+    eles são requisitados pela url da api + /version
+    isso retorna um array com dicionários que representam cada versão do mod
+
+    as principais chaves dentro de cada um desses dicionários são:
+        game_versions:
+            versões em que o mod é compatível
+        
+        loaders:
+            quais loaders podem ser usados pra rodar o mod
+        
+        files:
+            contém os arquivos do mod
+
+            na maioria das vezes um mod é contido em um único .jar,
+            mas alguns projetos podem ter múltiplos arquivos nessa lista,
+            como por exemplo, código fonte, licenças etc.
+
+            o que diferencia o .jar relevante dos adicionais é a chave 'primary'
+            se ela for true, significa que aquele é o .jar que realmente é o mod
+            se ela não for true em nenhum dos itens, como fallback, pode se assumir
+            que o primerio item da lista de ser considerado como primário
+        
+        dependencies:
+            contém dependencias necessárias pro funcionamento do mod pai
+
+            elas são listadas contendo o id dos projetos delas em vez do slug,
+            mas isso funciona do mesmo modo que um slug funcionaria
+    
+    args:
+        slug:
+            identificador úncio do mod. ex: modrinth.com/mod/sodium
+
+            pode ser tanto uma string entendível ou uma sequência de chars aleatória
+            ambos funcionam pra chegar na mesma url
+        
+        version:
+            versão do minecraft
+        
+        loader:
+            fabric, forge etc.
+    """
+
+    # construir a url que dá acesso a api do modrinth
+    project = f'{API_BASE}/project/{slug}/version'
+    
+    try:
+        resp = requests.get(project, headers=HEADERS)
+        resp.raise_for_status() # evidencia erros caso eles ocorram
+
+        resp = resp.json() # transforma a resposta de texto em json
+    except requests.exceptions.HTTPError:
+        logger.error(f'não foi possível obter os dados do projeto. isso provavelmente aconteceu por um slug inexistente', slug)
+        return
+
+    # um dos índices do array de versões do mod deve ser o alvo de download
+    # ele vai ser o primeiro que:
+    #   conter uma versão compatível com a passada pra função
+    #   e conter um loader compatível com o passado pra função
+    target = None
+    for i in resp:
+        game_versions = i.get('game_versions')
+        if not version in game_versions:
+            continue
+
+        loaders = i.get('loaders')
+        if not loader in loaders:
+            continue
+
+        target = i
+        break
+    
+    if target is None:
+        logger.error('alvo não encontrado, possívelmente por não ser compatível com o loader ou versão', slug)
+        return
+    
+    # obter a url e nome do arquivo .jar primário
+    files = target.get('files')
+    if len(files) > 1:
+        logger.info('o projeto possui mais de um arquivo disponível. baixando apenas o primário', slug)
+
+    primary = None
+    for f in files:
+        if not f.get('primary', False):
+            continue
+        
+        primary = f
+        break
+    if primary is None:
+        logger.warning('primário não encontrado, usando o primeiro item da lista como fallback', slug)
+        primary = files[0]
+    if primary is None:
+        logger.error('o projeto não possui nenhum arquivo disponível', slug)
+        return
+
+    url = primary.get('url')
+    filename = primary.get('filename')
+
+    # retorna esses dois valores como tupla
+    # devem ser desempacotados respectivamente ao usar a função
+    return url, filename
+
+def write_modpack(version: str, slugs: list, loader: str = 'fabric'):
+    for s in slugs:
+        download_from_modrinth
+
+def load_modpack(modpack: Path, downloaded_dir: Path, delete_previous: bool = False):
+    mods = DOTMINECRAFT / 'mods'
+    mods.mkdir(exist_ok=True, parents=True)
+
+    # deletar todos os mods presentes na .minecraft/mods, se especificado
+    if delete_previous:
+        logger.info('deletando todos os mods anteriores')
+        
+        for f in mods.rglob('*.jar'):
+            f.unlink()
+            
+        logger.success('mods deletados')
+
+    # obter os dados do modpack
+    with modpack.open('r', encoding='utf-8') as mp:
+        data = json.load(mp)
+
+    version = data.get('version')
+    loader = data.get('loader')
+    slugs = data.get('slugs')
+
+    # dados extras pro log
+    logger.modpack_init(
+        name=modpack.stem, count=len(slugs),
+        version=version, loader=loader)
+
+    # baixar pela internet ou pegar arquivos já existentes
+    # que correspondem a cada mod especificado no arquivo
+    for s in slugs:
+        res = get_project_data(s, version, loader)
+        if not res:
+            logger.warning('pulando, erro ao obter os dados do projeto', s)
+            continue
+        url, filename = res
+
+        # tentar obter um arquivo já existente antes de tenar baixar
+        found = None
+        for f in downloaded_dir.rglob('*.jar'):
+            if f.name == filename:
+                found = f
+        
+        if found is not None:
+            logger.success('mod já baixado encontrado', s)
+            shutil.copy2(found, mods)
+        else:
+            logger.info('iniciando download', s)
+
+            dest = download_jar(url, filename, mods)
+            
+            # copiar pro diretório de já baixados pra não precisar baixar de novo
+            subdown = downloaded_dir / version
+            subdown.mkdir(exist_ok=True)
+            shutil.copy2(dest, subdown)
+            
+            logger.success('download concluído', s)
+
+#download_from_modrinth('sodium', '1.20.1', 'fabric')
+load_modpack(Path('./modpacks/visuals.json'), Path('./downloads'))

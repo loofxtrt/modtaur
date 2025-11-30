@@ -1,5 +1,4 @@
 from pathlib import Path
-from dataclasses import dataclass
 import shutil
 import json
 import requests
@@ -9,35 +8,6 @@ import logger
 DOTMINECRAFT = Path.home() / '.minecraft'
 API_BASE = 'https://api.modrinth.com/v2'
 HEADERS = {"User-Agent": "modtaur/0.1"}
-
-@dataclass
-class Context():
-    """
-    args:
-        slug:
-            identificador úncio do mod. ex: modrinth.com/mod/sodium
-
-            pode ser tanto uma string entendível ou uma sequência de chars aleatória
-            ambos funcionam pra chegar na mesma url
-        
-        version:
-            versão do minecraft
-        
-        loader:
-            fabric, forge etc.
-        
-        dir_predownloaded:
-            mods já baixados que podem ser reutilizados
-            em vez de precisar baixar eles de novo pra um  novo modpack
-        
-        dir_mods:
-            ~/.minecraft/mods
-    """
-
-    version: str
-    loader: str
-    dir_predownloaded: Path
-    dir_mods: Path
 
 def download_jar(url: str, filename: str, destination_dir: Path):
     """
@@ -75,7 +45,7 @@ def download_jar(url: str, filename: str, destination_dir: Path):
 
     return destination
 
-def get_project_data(slug: str, section: str | None = 'version'):
+def get_project_data(slug: str, version: str, loader: str):
     """
     obtém os dados de um projeto do modrinth
     projetos se referem a mods, resourcepacks e datapacks
@@ -110,31 +80,32 @@ def get_project_data(slug: str, section: str | None = 'version'):
     
     args:
         slug:
-            identificador do mod. pode ser tanto um slug literal, como 'sodium'
-            ou um id gerado aleatoriamente, como 'AANobbMI'
+            identificador úncio do mod. ex: modrinth.com/mod/sodium
+
+            pode ser tanto uma string entendível ou uma sequência de chars aleatória
+            ambos funcionam pra chegar na mesma url
         
-        section:
-            define qual de dados seção vai ser obtida
-            'version' dá acesso a todas as versões que o mod já teve
-            a ausência desse valor resulta em dados gerais sobre o projeto
+        version:
+            versão do minecraft
+        
+        loader:
+            fabric, forge etc.
     """
 
     # construir a url que dá acesso a api do modrinth
-    project = f'{API_BASE}/project/{slug}'
-    if section == 'version':
-        project += '/version'
+    project = f'{API_BASE}/project/{slug}/version'
     
     try:
-        response = requests.get(project, headers=HEADERS)
-        response.raise_for_status() # evidencia erros caso eles ocorram
+        resp = requests.get(project, headers=HEADERS)
+        resp.raise_for_status() # evidencia erros caso eles ocorram
 
-        response = response.json() # transforma a resposta de texto em json
-        return response
+        resp = resp.json() # transforma a resposta de texto em json
+        return resp
     except requests.exceptions.HTTPError:
         logger.error(f'não foi possível obter os dados do projeto. isso provavelmente aconteceu por um slug inexistente', slug)
         return
 
-def get_compatible_version(project_data: dict, slug: str, ctx: Context) -> dict | None:
+def get_compatible_version(project_data: dict, version: str, loader: str) -> dict | None:
     """
     baseado no array de versões de um projeto, identifica qual deve ser o alvo de download
     o alvo vai ser definido como a primeira versão que:
@@ -142,9 +113,6 @@ def get_compatible_version(project_data: dict, slug: str, ctx: Context) -> dict 
         e contenha um loader compatível com o passado pra função
     """
     
-    version = ctx.version
-    loader = ctx.loader
-
     target = None
     for i in project_data:
         game_versions = i.get('game_versions')
@@ -160,12 +128,12 @@ def get_compatible_version(project_data: dict, slug: str, ctx: Context) -> dict 
         break
     
     if target is None:
-        logger.error('alvo não encontrado, possivelmente por não ser compatível com o loader ou versão', slug)
+        logger.error('alvo não encontrado, possívelmente por não ser compatível com o loader ou versão', slug)
         return
 
     return target
 
-def get_primary_jar(compatible_version: dict, slug: str):
+def get_primary_jar(compatible_version: dict, version: str, loader: str):
     # obter a url e nome do arquivo .jar primário
     # é importante que esse nome não seja mudado pra que o cache de mods já baixados funcione normalmente
     files = compatible_version.get('files')
@@ -195,11 +163,9 @@ def get_primary_jar(compatible_version: dict, slug: str):
     # devem ser desempacotados respectivamente ao usar a função
     return url, filename
 
-def resolve_dependencies(compatible_version: dict, ctx: Context):
-    dir_mods = ctx.dir_mods
-
-    if not dir_mods.is_dir():
-        logger.error(f'{dir_mods} não é um diretório')
+def resolve_dependencies(compatible_version: dict, version: str, loader: str, destination_dir: Path):
+    if not destination_dir.is_dir():
+        logger.error(f'{destination_dir} não é um diretório')
         return
     
     dependencies = compatible_version.get('dependencies', [])
@@ -211,70 +177,60 @@ def resolve_dependencies(compatible_version: dict, ctx: Context):
         if not d.get('dependency_type') == 'required':
             continue
 
-        # obtém o slug em vez do id pra ser mais legível por humanos
         project_id = d.get('project_id')
-        data = get_project_data(project_id, section=None)
-        slug = data.get('slug')
+        res = get_project_data(project_id, version, loader)
+        jar = get_primary_jar(compatible_version, version, loader)
 
-        resolve_project_downloading(slug, ctx, is_dependency=True)
+
+def write_modpack(version: str, slugs: list, loader: str = 'fabric'):
+    for s in slugs:
+        download_from_modrinth
 
 def resolve_project_downloading(
     slug: str,
-    ctx: Context,
+    version: str,
+    loader: str,
+    modbank: Path,
+    destination_dir: Path,
     is_dependency: bool = False
     ):
-    version = ctx.version
-    loader = ctx.loader
-    dir_mods = ctx.dir_mods
-    dir_predownloaded = ctx.dir_predownloaded
-
-    response = get_project_data(slug)
+    response = get_project_data(s, version, loader)
     if not response:
-        logger.warning('pulando, erro ao obter os dados do projeto', slug)
-        return
-    compatible_version = get_compatible_version(response, slug, ctx)
-    if not compatible_version:
-        return
-    resolve_dependencies(compatible_version, ctx)
-    url, filename = get_primary_jar(compatible_version, slug)
+        logger.warning('pulando, erro ao obter os dados do projeto', s)
+        continue
+    compatible_version = get_compatible_version(response, version, loader)
+    url, filename = get_primary_jar(compatible_version, version, loader)
 
-    # tentar obter um arquivo já existente antes de tentar baixar
+    # tentar obter um arquivo já existente antes de tenar baixar
     found = None
-    for f in dir_predownloaded.rglob('*.jar'):
+    for f in downloaded_dir.rglob('*.jar'):
         if f.name == filename:
             found = f
     
-    display = slug
-    icon = logger.DEFAULT_NERDFONT_ICON
-    if is_dependency:
-        icon = '󰯁'
-        display = f'DEP: {slug}'
-
     if found is not None:
-        logger.success('mod já baixado encontrado', display, nerdfont_icon=icon)
-        shutil.copy2(found, dir_mods)
+        logger.success('mod já baixado encontrado', s)
+        shutil.copy2(found, mods)
     else:
-        with logger.spinner('iniciando download', display):
-            dest = download_jar(url, filename, dir_mods)
+        logger.info('iniciando download', s)
+
+        dest = download_jar(url, filename, mods)
         
         # copiar pro diretório de já baixados pra não precisar baixar de novo
-        subdown = None
-        if not is_dependency:
-            subdown = dir_predownloaded / version
-        else:
-            subdown = dir_predownloaded / version / 'dependencies'
+        subdown = downloaded_dir / version
         subdown.mkdir(exist_ok=True)
         shutil.copy2(dest, subdown)
+        
+        logger.success('download concluído', s)
 
-def load_modpack(modpack: Path, delete_previous: bool = True):
-    dir_mods = DOTMINECRAFT / 'mods'
-    dir_mods.mkdir(exist_ok=True, parents=True)
+def load_modpack(modpack: Path, downloaded_dir: Path, delete_previous: bool = False):
+    mods = DOTMINECRAFT / 'mods'
+    mods.mkdir(exist_ok=True, parents=True)
 
     # deletar todos os mods presentes na .minecraft/mods, se especificado
     if delete_previous:
         logger.info('deletando todos os mods anteriores')
         
-        for f in dir_mods.rglob('*.jar'):
+        for f in mods.rglob('*.jar'):
             f.unlink()
             
         logger.success('mods deletados')
@@ -286,13 +242,6 @@ def load_modpack(modpack: Path, delete_previous: bool = True):
     version = data.get('version')
     loader = data.get('loader')
     slugs = data.get('slugs')
-    
-    ctx = Context(
-        version=version,
-        loader=loader,
-        dir_mods=dir_mods,
-        dir_predownloaded=Path('./downloads')
-    )
 
     # dados extras pro log
     logger.modpack_init(
@@ -302,7 +251,7 @@ def load_modpack(modpack: Path, delete_previous: bool = True):
     # baixar pela internet ou pegar arquivos já existentes
     # que correspondem a cada mod especificado no arquivo
     for s in slugs:
-        resolve_project_downloading(s, ctx)
+        
 
 #download_from_modrinth('sodium', '1.20.1', 'fabric')
-load_modpack(Path('./modpacks/visuals.json'))
+load_modpack(Path('./modpacks/visuals.json'), Path('./downloads'))

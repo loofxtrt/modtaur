@@ -75,7 +75,7 @@ def download_jar(url: str, filename: str, destination_dir: Path):
 
     return destination
 
-def get_project_data(slug: str, section: str | None = 'version'):
+def get_project_data(slug: str):
     """
     obtém os dados de um projeto do modrinth
     projetos se referem a mods, resourcepacks e datapacks
@@ -107,22 +107,10 @@ def get_project_data(slug: str, section: str | None = 'version'):
 
             elas são listadas contendo o id dos projetos delas em vez do slug,
             mas isso funciona do mesmo modo que um slug funcionaria
-    
-    args:
-        slug:
-            identificador do mod. pode ser tanto um slug literal, como 'sodium'
-            ou um id gerado aleatoriamente, como 'AANobbMI'
-        
-        section:
-            define qual de dados seção vai ser obtida
-            'version' dá acesso a todas as versões que o mod já teve
-            a ausência desse valor resulta em dados gerais sobre o projeto
     """
 
     # construir a url que dá acesso a api do modrinth
-    project = f'{API_BASE}/project/{slug}'
-    if section == 'version':
-        project += '/version'
+    project = f'{API_BASE}/project/{slug}/version'
     
     try:
         response = requests.get(project, headers=HEADERS)
@@ -211,12 +199,8 @@ def resolve_dependencies(compatible_version: dict, ctx: Context):
         if not d.get('dependency_type') == 'required':
             continue
 
-        # obtém o slug em vez do id pra ser mais legível por humanos
         project_id = d.get('project_id')
-        data = get_project_data(project_id, section=None)
-        slug = data.get('slug')
-
-        resolve_project_downloading(slug, ctx, is_dependency=True)
+        resolve_project_downloading(project_id, ctx, is_dependency=True)
 
 def resolve_project_downloading(
     slug: str,
@@ -244,18 +228,13 @@ def resolve_project_downloading(
         if f.name == filename:
             found = f
     
-    display = slug
-    icon = logger.DEFAULT_NERDFONT_ICON
-    if is_dependency:
-        icon = '󰯁'
-        display = f'DEP: {slug}'
-
     if found is not None:
-        logger.success('mod já baixado encontrado', display, nerdfont_icon=icon)
+        logger.success('mod já baixado encontrado', slug)
         shutil.copy2(found, dir_mods)
     else:
-        with logger.spinner('iniciando download', display):
-            dest = download_jar(url, filename, dir_mods)
+        logger.info('iniciando download', slug)
+
+        dest = download_jar(url, filename, dir_mods)
         
         # copiar pro diretório de já baixados pra não precisar baixar de novo
         subdown = None
@@ -265,6 +244,8 @@ def resolve_project_downloading(
             subdown = dir_predownloaded / version / 'dependencies'
         subdown.mkdir(exist_ok=True)
         shutil.copy2(dest, subdown)
+        
+        logger.success('download concluído', slug)
 
 def load_modpack(modpack: Path, delete_previous: bool = True):
     dir_mods = DOTMINECRAFT / 'mods'
