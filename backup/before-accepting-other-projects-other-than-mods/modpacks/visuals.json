@@ -1,7 +1,7 @@
 {
     "version": "1.21.8",
     "loader": "fabric",
-    "mods": [
+    "slugs": [
         "sodium",
         "iris",
         "sound-physics-remastered",
@@ -13,6 +13,7 @@
         "blur-plus",
         "particular",
         "held-item-info",
+        "xbob",
         "cave-dust",
         "wakes",
         "better-clouds",
@@ -25,8 +26,5 @@
         "female-gender",
         "3dskinlayers",
         "dark-loading-screen"
-    ],
-    "resourcepacks": [
-
     ]
 }

@@ -4,7 +4,6 @@
     "slugs": [
         "veinminer",
         "veinminer-client",
-        "xaeros-minimap",
-        "easy-npc"
+        "xaeros-minimap"
     ]
 }

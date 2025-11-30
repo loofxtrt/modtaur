@@ -19,7 +19,7 @@ def _title_appender(text: Text, title: str, style: str, title_max: int | None = 
         if len(title) > title_max:
             title = title[:-1]
             title += '…' # ellipsis em vez de pontos pra ocupar menos espaço
-        title = title.ljust(title_max + 4)
+        title = title.ljust(title_max + 8)
 
     text.append(title, style=style)
     text.append(' ')

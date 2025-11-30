@@ -134,7 +134,7 @@ def get_project_data(slug: str, section: str | None = 'version'):
         logger.error(f'não foi possível obter os dados do projeto. isso provavelmente aconteceu por um slug inexistente', slug)
         return
 
-def get_compatible_version(project_data: dict, slug: str, ctx: Context) -> dict | None:
+def get_compatible_version(project_data: dict, slug: str, ctx: Context, release_only: bool = False) -> dict | None:
     """
     baseado no array de versões de um projeto, identifica qual deve ser o alvo de download
     o alvo vai ser definido como a primeira versão que:
@@ -154,6 +154,11 @@ def get_compatible_version(project_data: dict, slug: str, ctx: Context) -> dict 
         loaders = i.get('loaders')
         if not loader in loaders:
             continue
+
+        if release_only:
+            if not i.get('version_type') == 'release':
+                # só aceita versões estáveis
+                continue
         
         # se uma versão passar nas duas condições, ela é o alvo
         target = i
@@ -305,5 +310,5 @@ def load_modpack(modpack: Path, delete_previous: bool = True):
         resolve_project_downloading(s, ctx)
 
 #download_from_modrinth('sodium', '1.20.1', 'fabric')
-#load_modpack(Path('./modpacks/visuals.json'))
-load_modpack(Path('./modpacks/construction.json'))
+load_modpack(Path('./modpacks/visuals.json'))
+#load_modpack(Path('./modpacks/construction.json'))
