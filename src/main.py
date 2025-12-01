@@ -5,11 +5,24 @@ from .constants import DOTMINECRAFT, Context
 from .modrinth import resolve_project_downloading
 from . import logger
 
-def load_modpack(modpack: Path, delete_previous: bool = True):
-    dir_mods = DOTMINECRAFT / 'mods'
-    dir_resourcepacks = DOTMINECRAFT / 'resourcepacks'
-    
-    minecraft_dirs = [dir_mods, dir_resourcepacks]
+def load_modpack(
+    modpack: Path,
+    delete_previous: bool = True,
+    apply_mods: bool = True,
+    apply_resourcepacks: bool = True
+    ):
+    minecraft_dirs = []
+
+    if apply_mods:
+        dir_mods = DOTMINECRAFT / 'mods'
+        minecraft_dirs.append(dir_mods)
+
+    if apply_resourcepacks:
+        dir_resourcepacks = DOTMINECRAFT / 'resourcepacks'
+        minecraft_dirs.append(dir_resourcepacks)
+
+    if len(minecraft_dirs) == 0:
+        return
 
     for d in minecraft_dirs:
         # ter certeza de que os diretórios principais existem
@@ -49,9 +62,11 @@ def load_modpack(modpack: Path, delete_previous: bool = True):
 
     # baixar pela internet ou pegar arquivos já existentes
     # que correspondem a cada mod especificado no arquivo
-    for m in mods:
-        resolve_project_downloading(m, 'mod', ctx)
-    for r in resourcepacks:
-       resolve_project_downloading(r, 'resourcepack', ctx)
+    if apply_mods:
+        for m in mods:
+            resolve_project_downloading(m, 'mod', ctx)
+    if apply_resourcepacks:
+        for r in resourcepacks:
+            resolve_project_downloading(r, 'resourcepack', ctx)
 
-#load_modpack(Path('./modpacks/visuals.json'))
+load_modpack(Path('./modpacks/visuals.json'), apply_resourcepacks=False)
