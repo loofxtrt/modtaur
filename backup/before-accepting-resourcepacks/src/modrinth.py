@@ -4,10 +4,10 @@ import shutil
 
 from .constants import Context, API_BASE, HEADERS
 from .parser import get_compatible_version, get_primary_jar
-from .cache import get_cached_project_data, write_cache
+from .cache import get_cached_data, write_cache
 from . import logger
 
-def download_file(url: str, filename: str, destination_dir: Path):
+def download_jar(url: str, filename: str, destination_dir: Path):
     """
     baixa o .jar atribuído a um mod. os valores que identificam esse jar
     devem ter sido anteriormente já extraído dos dados do projeto
@@ -101,7 +101,7 @@ def get_project_data(slug: str, section: str | None = 'version'):
         logger.error(f'não foi possível obter os dados do projeto. isso provavelmente aconteceu por um slug inexistente', title=slug)
         return
 
-def resolve_dependencies(dependencies: list[dict], parent_slug: str, ctx: Context, cache_file: Path):    
+def resolve_dependencies(dependencies: list, parent_slug: str, ctx: Context):    
     dir_mods = ctx.dir_mods
 
     if not dir_mods.is_dir():
@@ -121,17 +121,13 @@ def resolve_dependencies(dependencies: list[dict], parent_slug: str, ctx: Contex
         # se não existir ainda, isso escreve imediatamente o slug
         # correspondete a dependência em tempo de execução
         dependency_slug = d.get('slug')
-        project_data = get_project_data(dependency_slug, section=None)
-        project_type = project_data.get('project_type')
-        if not project_type:
-            continue
 
         if not dependency_slug:
             dependency_slug = get_slug_from_id(d['project_id'])
 
             # procura pelas dependências que têm o mesmo id que essa
             # e adiciona o slug a elas
-            cache = get_cached_project_data(parent_slug, cache_file)
+            cache = get_cached_data(parent_slug, ctx)
             project_id = d.get('project_id')
 
             # dependências no cache
@@ -145,7 +141,7 @@ def resolve_dependencies(dependencies: list[dict], parent_slug: str, ctx: Contex
                 # e escrever os dados atualizados
                 write_cache(parent_slug, cache.get('filename'), c_deps, ctx)
 
-        resolve_project_downloading(dependency_slug, project_type, ctx, is_dependency_for=parent_slug)
+        resolve_project_downloading(dependency_slug, ctx, is_dependency_for=parent_slug)
 
 def get_slug_from_id(project_id: str):
     """
@@ -156,84 +152,44 @@ def get_slug_from_id(project_id: str):
     data = get_project_data(project_id, section=None)
     return data.get('slug')
 
-def resolve_project_downloading(slug: str, project_type: str, ctx: Context, is_dependency_for: str | None = None):
-    """
-    args:
-        slug:
-            identificador legível do projeto
-        
-        project_type:
-            mod, resourcepack etc.
-        
-        is_dependency_for:
-            se é uma dependência de algum outro projeto, deve ser espeficado
-            isso serve pro log ser mais detalhado        
-    """
-
-    def _install_predownloaded(target: Path, dependencies: list[dict]):
-        resolve_dependencies(dependencies, slug, ctx, cache_file)
-        shutil.copy2(target, dir_destination)
-
-        logger.success('mod já baixado encontrado', title=slug, nerdfont_icon=nerdfont_icon, details=dependency_label)
-
-    def _search_predownloaded():
-        return dir_predownloaded.rglob(f'*{suffix_type}')
-
+def resolve_project_downloading(slug: str, ctx: Context, is_dependency_for: str | None = None):
     version = ctx.version
     loader = ctx.loader
+    dir_mods = ctx.dir_mods
     dir_predownloaded = ctx.dir_predownloaded
-
-    dir_destination = None
-    suffix_type = None
-
-    if project_type == 'mod':
-        dir_destination = ctx.dir_mods
-        suffix_type = '.jar'
-    elif project_type == 'resourcepack':
-        dir_destination = ctx.dir_resourcepacks
-        suffix_type = '.zip'
-    
-    if not dir_destination or not suffix_type:
-        logger.error(f'{project_type} não parece ser um tipo válido de projeto do modrinth')
-        return
-
-    # construção de caminhos de pré-baixados e cache
-    # + s no final mod -> mods, resourcepack -> resourcepacks
-    subdown = dir_predownloaded / version / (project_type + 's')
-    if is_dependency_for is not None:
-        subdown = subdown / 'dependencies'
-
-    subdown.mkdir(exist_ok=True, parents=True)
-    cache_file = subdown / '.cache.json'
 
     # definir argumentos pro log
     nerdfont_icon = logger.DEFAULT_NERDFONT_ICON
     dependency_label = None
     if is_dependency_for is not None:
         dependency_label = f'é uma dependência de {is_dependency_for}'
-        nerdfont_icon = '󰆦'
+        nerdfont_icon = '󰯁'
 
-    # tentar obter o projeto pelo cache e pelo diretório de pré-baixados
-    # antes de tentar fazer uma requisição pra api e baixar pela web
-    cached = get_cached_project_data(slug, cache_file)
+    # tentar obter um mod pelo cache e já baixado
+    # antes de tentar fazer uma requisição pra api
+    cached = get_cached_data(slug, ctx)
     if cached:
         filename = cached.get('filename')
 
-        for f in _search_predownloaded():
+        for f in dir_predownloaded.rglob('*.jar'):
             if f.name == filename:
                 dependencies = cached.get('dependencies', [])
+                resolve_dependencies(dependencies, slug, ctx)
                 
-                _install_predownloaded(f, dependencies)
+                shutil.copy2(f, dir_mods)
+                
+                logger.success('mod já baixado encontrado', title=slug, nerdfont_icon=nerdfont_icon, details=dependency_label)
                 return
 
     response = get_project_data(slug)
     if not response:
         return
 
-    compatible_version = get_compatible_version(response, project_type, slug, ctx)
+    compatible_version = get_compatible_version(response, slug, ctx)
     if not compatible_version:
         return
 
+    # obter os dados principais do mod: dependências, url e .jar primário
     dependencies = compatible_version.get('dependencies', [])
     url, filename = get_primary_jar(compatible_version, slug, ctx)
 
@@ -249,20 +205,29 @@ def resolve_project_downloading(slug: str, project_type: str, ctx: Context, is_d
     # depois de obter os dados, escreve eles no cache
     # (incluindo o campo extra de slug das dependências),
     # e resolve as dependências, baixando as necessárias
-    write_cache(slug, filename, dependencies, cache_file)
-    resolve_dependencies(dependencies, slug, ctx, cache_file)
+    write_cache(slug, filename, dependencies, ctx)
+    resolve_dependencies(dependencies, slug, ctx)
 
     # tentar só encontrar mods pré-baixados de novo
     # se isso não for feito novamente, mesmo que o mod já esteja pré-baixado
     # o download dele seria feito de novo (se esse mod já não estiver no cache)
-    for f in _search_predownloaded():
+    for f in dir_predownloaded.rglob('*.jar'):
         if f.name == filename:
-            _install_predownloaded(f, dependencies)
+            shutil.copy2(f, dir_mods)
+                    
+            logger.success('mod já baixado encontrado', title=slug, nerdfont_icon=nerdfont_icon, details=dependency_label)
             return
 
-    # baixar o arquivo triggando um spinner pro carregamento do download
+    # baixar o .jar triggando um spinner pro carregamento do download
     with logger.spinner(title=slug, details=dependency_label):
-        dest = download_file(url, filename, dir_destination)
+        dest = download_jar(url, filename, dir_mods)
     
     # copiar pro diretório de já baixados pra não precisar baixar de novo
+    subdown = None
+    if not is_dependency_for:
+        subdown = dir_predownloaded / version
+    else:
+        subdown = dir_predownloaded / version / 'dependencies'
+    
+    subdown.mkdir(exist_ok=True, parents=True)
     shutil.copy2(dest, subdown)

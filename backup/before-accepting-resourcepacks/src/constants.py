@@ -27,13 +27,9 @@ class Context():
         
         dir_mods:
             ~/.minecraft/mods
-        
-        dir_resourcepacks:
-            ~/.minecraft/resourcepacks
     """
 
     version: str
     loader: str
     dir_predownloaded: Path
     dir_mods: Path
-    dir_resourcepacks: Path

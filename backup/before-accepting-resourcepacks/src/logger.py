@@ -12,18 +12,8 @@ LEVEL_COLORS = {
     'error':   ['#d91b47', 'red'   ],
     'warning': ['#d9bd1b', 'yellow']
 }
-# ICON_PACKS = {
-#     'outlined': {
-#         'tool': '󰗝',
-#         'cube': '󰆧'
-#     },
-#     'solid': {
-#         'tool': '󱍔'
-#         'cube': '󰆦'
-#     }
-# }
 DEFAULT_NERDFONT_ICON = '󱍔'
-USE_CUSTOM_COLORS = False
+USE_CUSTOM_COLORS = True
 
 def _get_level_color(level: str, custom: bool = True):
     """
@@ -100,17 +90,18 @@ def spinner(msg = 'iniciando download...', title: str | None = None, details: st
 
     def _resolve_title(text: Text):
         if title:
-            _title_appender(text, title, style)
+            _title_appender(while_downloading, title, style)
 
     def _resolve_details(text: Text):
         if details:
-            _details_appender(text, details, color)
+            _details_appender(while_downloading, details, color)
 
     def _resolve_icon(text: Text):
         _icon_appender(text, DEFAULT_NERDFONT_ICON, style)    
 
     # mensagem enquanto o spinner está em andamento
     while_downloading = Text()
+    _resolve_icon(while_downloading)
     _resolve_title(while_downloading)
     while_downloading.append(msg)
     _resolve_details(while_downloading)
@@ -133,23 +124,16 @@ def spinner(msg = 'iniciando download...', title: str | None = None, details: st
 
             live.update(after_downloaded)
 
-def modpack_init(name: str, mod_count: int, resourcepack_count: int, version: str, loader: str):
+def modpack_init(name: str, count: int, version: str, loader: str):
     # logger especial só pro momento em que uma leitura de modpack começa
-    mod_count = str(mod_count)
-    resourcepack_count = str(resourcepack_count)
-
     style = f'bold {_get_level_color('success', USE_CUSTOM_COLORS)}'
-    
     text = Text()
     text.append('iniciando o carregamento de ')
-    text.append(f'{mod_count}', style)
-    text.append(' mods e ')
-    text.append(f'{resourcepack_count}', style)
-    text.append(' resourcepacks do modpack ')
+    text.append(str(count), style)
+    text.append(' mods do modpack ')
     text.append(name, style)
     text.append(' pra versão ')
     text.append(version, style)
     text.append(' usando ')
     text.append(loader, style)
-
     _log(text, 'success', nerdfont_icon='󰒓')

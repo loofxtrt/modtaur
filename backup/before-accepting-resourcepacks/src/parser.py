@@ -2,7 +2,7 @@ from .constants import Context
 from .cache import write_cache
 from . import logger
 
-def get_compatible_version(project_data: dict, project_type: str, slug: str, ctx: Context, release_only: bool = False) -> dict | None:
+def get_compatible_version(project_data: dict, slug: str, ctx: Context, release_only: bool = False) -> dict | None:
     """
     baseado no array de versões de um projeto, identifica qual deve ser o alvo de download
     o alvo vai ser definido como a primeira versão que:
@@ -11,23 +11,21 @@ def get_compatible_version(project_data: dict, project_type: str, slug: str, ctx
     """
     
     version = ctx.version
+    loader = ctx.loader
 
     target = None
     for i in project_data:
         game_versions = i.get('game_versions')
         if not version in game_versions:
             continue
-        
-        # só precisa verificar compatibilidade com o loader se for um mod
-        if project_type == 'mod':
-            loaders = i.get('loaders')
-            loader = ctx.loader
-            if not loader in loaders:
-                continue
 
-        # só aceita versões estáveis
+        loaders = i.get('loaders')
+        if not loader in loaders:
+            continue
+
         if release_only:
             if not i.get('version_type') == 'release':
+                # só aceita versões estáveis
                 continue
         
         # se uma versão passar nas duas condições, ela é o alvo

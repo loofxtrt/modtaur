@@ -11,6 +11,7 @@
         "enhancedvisuals",
         "particle-rain",
         "blur-plus",
+        "particular",
         "held-item-info",
         "cave-dust",
         "wakes",
@@ -24,10 +25,13 @@
         "female-gender",
         "3dskinlayers",
         "dark-loading-screen",
-        "entityculling"
+        "entityculling",
+        "blood-n-particles-mod"
     ],
     "resourcepacks": [
         "enhancedvisual-pixelated",
+        "als-scorpions-crabs", nao funciona
+        "als-enderman-revamped", nao funciona
         "als-skeletons-revamped-classic-faces",
         "als-skeletons-revamped",
         "als-skeleton-quivers",
@@ -37,22 +41,29 @@
         "brays-zombie-overhaul",
         "fish-bucket-variants",
         "recolourful-containers-gui",
-        "eating-animation-resourcepack",
+        "theones-eating-animation-pack",
+        "tasty-items",
+        "simple-grass-flowers",
         "cubic-sun-moon",
         "os-colorful-grasses",
+        "os-colorful-leaves",
         "os-colorful-cobblestone",
+        "os-bookshelves",
         "fancy-crops",
         "even-better-enchants",
         "chase-the-skies",
         "gui-sodium",
         "blinking-ender-eyes",
+        "better-sugar-cane", quebra a textura da vaca (???)
         "drodis-illagers",
         "flower-pots",
+        "just-normal-cats",
         "fogulous",
+        "remodeled-cactus",
+        "just-fancy-torches",
         "vvi",
         "better-flame-particles",
         "better-boat",
-        "go-fish",
-        "better-leaves"
+        "go-fish"
     ]
 }

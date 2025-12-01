@@ -1,7 +1,8 @@
-from .utils import write_json, read_json
-from .constants import Context
+from pathlib import Path
 
-def write_cache(slug: str, filename: str, dependencies: list, ctx: Context):
+from .utils import write_json, read_json
+
+def write_cache(slug: str, filename: str, dependencies: list, cache_file: Path):
     """
     escreve em um cache, quais slugs estão associados a quais filenames
     
@@ -9,14 +10,10 @@ def write_cache(slug: str, filename: str, dependencies: list, ctx: Context):
     só pra verificar se um filename já está presente no diretório de pré-baixados
     """
 
-    dir_predownloaded = ctx.dir_predownloaded
-    version = ctx.version
-
     data = {}
 
     # ler possíveis dados já existentes
-    cache = dir_predownloaded / version / '.cache.json'
-    data = read_json(cache)
+    data = read_json(cache_file)
 
     # adicionar o novo par aos dados e atualizar o arquivo
     data[slug] = {
@@ -24,15 +21,10 @@ def write_cache(slug: str, filename: str, dependencies: list, ctx: Context):
         'dependencies': dependencies
     }
     
-    write_json(cache, data)
+    write_json(cache_file, data)
 
-def get_cached_data(slug: str, ctx: Context) -> dict | None:
-    dir_predownloaded = ctx.dir_predownloaded
-    version = ctx.version
+def get_cached_project_data(slug: str, cache_file: Path) -> dict | None:
+    data = read_json(cache_file)
+    cached_project = data.get(slug)
 
-    cache = dir_predownloaded / version / '.cache.json'
-    data = read_json(cache)
-
-    cached_mod = data.get(slug)
-
-    return cached_mod
+    return cached_project
