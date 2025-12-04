@@ -2,7 +2,7 @@ from pathlib import Path
 import requests
 import shutil
 
-from .constants import Context, API_BASE, HEADERS
+from .utils import Context, API_BASE, HEADERS, Project, Version, Dependency
 from .parser import get_compatible_version, get_primary_jar
 from .cache import get_cached_project_data, write_cache
 from . import logger
@@ -43,7 +43,7 @@ def download_file(url: str, filename: str, destination_dir: Path):
 
     return destination
 
-def get_project_data(slug: str, section: str | None = 'version'):
+def _request_project_data(slug: str, section: str | None = 'version'):
     """
     obtém os dados de um projeto do modrinth
     projetos se referem a mods, resourcepacks e datapacks
@@ -101,7 +101,78 @@ def get_project_data(slug: str, section: str | None = 'version'):
         logger.error(f'não foi possível obter os dados do projeto. isso provavelmente aconteceu por um slug inexistente', title=slug)
         return
 
-def resolve_dependencies(dependencies: list[dict], parent_slug: str, ctx: Context, cache_file: Path):    
+def get_version_list(slug: str) -> list[Version]:
+    data = _request_project_data(slug)
+    version_list = []
+
+    for v in data:
+        raw_deps = v.get('dependencies', [])
+        dependencies = _load_depencencies(raw_deps)
+
+        version = Version(
+            _parent_slug=slug,
+            game_versions=v.get('game_versions'),
+            loaders=v.get('loaders'),
+            id=v.get('id'),
+            version_type=v.get('version_type'),
+            files=v.get('files'),
+            dependencies=dependencies
+        )
+        version_list.append(version)
+    
+    return version_list
+
+def get_project(slug: str) -> Project:
+    data = _request_project_data(slug, section=None)
+    return Project(
+        game_versions=data.get('game_versions'),
+        project_type=data.get('project_type'),
+        id=data.get('id'),
+        slug=slug,
+        loaders=data.get('loaders')
+    )
+
+def _load_depencencies(raw_deps: list[dict]) -> list[Dependency]:
+    """
+    converte uma lista de dict em uma lista de Dependency
+    isso serve pra que informações vindas do modrinth possam ser entendidas pelo software
+
+    args:
+        raw_deps:
+            a lista de dicionários que aparece em cada versão individual do projeto. ex:
+            lista-de-versoes: [
+                versao: {
+                    mais-informacoes: lorem ipsum
+                    dependencias: [ <- essa lista
+                        {
+                            informacoes-da-dependencia
+                        }
+                    ]
+                }
+            ]
+    """
+
+    dependencies = []
+
+    for raw in raw_deps:
+        # esse project_id não se refere a quem requisitou essa dependência
+        # ele se refere ao projeto da dependência em si
+        project_id = raw.get('project_id')
+
+        d = Dependency(
+            _slug=get_slug_from_id(project_id),
+            project_id=project_id,
+            dependency_type=raw.get('dependency_type')
+        )
+        dependencies.append(d)
+
+    return dependencies
+
+def resolve_dependencies(dependencies: list[Dependency], parent_slug: str, ctx: Context):
+    """
+    verifica quais dependências são obrigatórias pro funcionamento de um projeto e as baixa
+    """
+
     dir_mods = ctx.dir_mods
 
     if not dir_mods.is_dir():
@@ -113,37 +184,12 @@ def resolve_dependencies(dependencies: list[dict], parent_slug: str, ctx: Contex
 
     # baixar cada dependência
     for d in dependencies:
-        if not d.get('dependency_type') == 'required':
+        if not d.dependency_type == 'required':
             continue
         
-        # obtem o slug da dependência em vez do id dela
-        #
-        # se não existir ainda, isso escreve imediatamente o slug
-        # correspondete a dependência em tempo de execução
-        dependency_slug = d.get('slug')
-        project_data = get_project_data(dependency_slug, section=None)
-        project_type = project_data.get('project_type')
-        if not project_type:
-            continue
-
-        if not dependency_slug:
-            dependency_slug = get_slug_from_id(d['project_id'])
-
-            # procura pelas dependências que têm o mesmo id que essa
-            # e adiciona o slug a elas
-            cache = get_cached_project_data(parent_slug, cache_file)
-            project_id = d.get('project_id')
-
-            # dependências no cache
-            c_deps = cache.get('dependencies', [])
-
-            for i in c_deps:
-                # verificar qual dep do cache tem o mesmo id que essa
-                if i.get('project_id') == project_id:
-                    i['slug'] = dependency_slug
-                
-                # e escrever os dados atualizados
-                write_cache(parent_slug, cache.get('filename'), c_deps, ctx)
+        dependency_slug = d._slug
+        project = get_project(dependency_slug)
+        project_type = project.project_type
 
         resolve_project_downloading(dependency_slug, project_type, ctx, is_dependency_for=parent_slug)
 
@@ -153,7 +199,7 @@ def get_slug_from_id(project_id: str):
     a partir do id (identificador aleatório) de um projeto
     """
 
-    data = get_project_data(project_id, section=None)
+    data = _request_project_data(project_id, section=None)
     return data.get('slug')
 
 def resolve_project_downloading(slug: str, project_type: str, ctx: Context, is_dependency_for: str | None = None):
@@ -170,8 +216,8 @@ def resolve_project_downloading(slug: str, project_type: str, ctx: Context, is_d
             isso serve pro log ser mais detalhado        
     """
 
-    def _install_predownloaded(target: Path, dependencies: list[dict]):
-        resolve_dependencies(dependencies, slug, ctx, cache_file)
+    def _install_predownloaded(target: Path, dependencies: list[Dependency]):
+        resolve_dependencies(dependencies, slug, ctx)
         shutil.copy2(target, dir_destination)
 
         logger.success('mod já baixado encontrado', title=slug, nerdfont_icon=nerdfont_icon, details=dependency_label)
@@ -211,7 +257,7 @@ def resolve_project_downloading(slug: str, project_type: str, ctx: Context, is_d
     dependency_label = None
     if is_dependency_for is not None:
         dependency_label = f'é uma dependência de {is_dependency_for}'
-        nerdfont_icon = '󰆦'
+        nerdfont_icon = '󰏖'
 
     # tentar obter o projeto pelo cache e pelo diretório de pré-baixados
     # antes de tentar fazer uma requisição pra api e baixar pela web
@@ -221,36 +267,23 @@ def resolve_project_downloading(slug: str, project_type: str, ctx: Context, is_d
 
         for f in _search_predownloaded():
             if f.name == filename:
-                dependencies = cached.get('dependencies', [])
-                
+                raw_deps = cached.get('dependencies', [])
+                dependencies = _load_depencencies(raw_deps)
+
                 _install_predownloaded(f, dependencies)
                 return
 
-    response = get_project_data(slug)
-    if not response:
-        return
-
-    compatible_version = get_compatible_version(response, project_type, slug, ctx)
+    project = get_project(slug)
+    version_list = get_version_list(slug)
+    compatible_version = get_compatible_version(version_list, project, project_type, ctx)
     if not compatible_version:
         return
 
-    dependencies = compatible_version.get('dependencies', [])
-    url, filename = get_primary_jar(compatible_version, slug, ctx)
+    dependencies = compatible_version.dependencies
+    url, filename = get_primary_jar(compatible_version, ctx)
 
-    # adicionar o campo com o slug da dependência no cache caso ainda não exista
-    # isso não afeta em nada essa função, só é feito aqui porque
-    # ela já obtém os dados do projeto, então isso é aproveitado
-    for d in dependencies:
-        dependency_slug = d.get('slug')
-
-        if not dependency_slug:
-            d['slug'] = get_slug_from_id(d['project_id'])
-
-    # depois de obter os dados, escreve eles no cache
-    # (incluindo o campo extra de slug das dependências),
-    # e resolve as dependências, baixando as necessárias
-    write_cache(slug, filename, dependencies, cache_file)
-    resolve_dependencies(dependencies, slug, ctx, cache_file)
+    # depois de obter os dados, resolve as dependências, baixando as necessárias
+    resolve_dependencies(dependencies, slug, ctx)
 
     # tentar só encontrar mods pré-baixados de novo
     # se isso não for feito novamente, mesmo que o mod já esteja pré-baixado

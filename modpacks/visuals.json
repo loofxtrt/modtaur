@@ -3,7 +3,6 @@
     "loader": "fabric",
     "mods": [
         "sodium",
-        "iris",
         "sound-physics-remastered",
         "presence-footsteps",
         "ambientsounds",
@@ -18,7 +17,6 @@
         "cameraoverhaul",
         "hold-my-items",
         "modmenu",
-        "distanthorizons",
         "dripsounds",
         "make_bubbles_pop",
         "female-gender",

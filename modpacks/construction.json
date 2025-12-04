@@ -1,7 +1,7 @@
 {
     "version": "1.20.1",
     "loader": "fabric",
-    "slugs": [
+    "mods": [
         "simple-copper-pipes",
         "decorative-blocks",
         "hearth-and-home",

@@ -1,7 +1,7 @@
 {
     "version": "1.21.8",
     "loader": "fabric",
-    "slugs": [
+    "mods": [
         "worldedit",
         "building-wands"
     ]
