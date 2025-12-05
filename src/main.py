@@ -4,7 +4,7 @@ import click
 
 from .modrinth import resolve_project_downloading, get_project, get_version_list
 from .parser import get_compatible_version
-from .utils import read_json, DOTMINECRAFT, Context
+from .utils import read_json, DOTMINECRAFT, Context, DotMinecraft
 from . import logger
 
 dir_mods = DOTMINECRAFT / 'mods'
@@ -17,9 +17,8 @@ def _context_from_modpack_data(data: dict) -> Context:
     return Context(
         version=version,
         loader=loader,
-        dir_mods=dir_mods,
-        dir_resourcepacks=dir_resourcepacks,
-        dir_predownloaded=Path('./downloads')
+        dotminecraft=DotMinecraft(),
+        cache_root=Path('./cache'),
     )
 
 def _normalize_json_path(file: Path | str) -> Path:
@@ -62,6 +61,8 @@ def verify_compatiblity(modpack: str, version: str | None, loader: str | None):
         o valor usado vai ser o que está dentro do modpack
     """
     
+    logger.debug(modpack, title='verify')
+    
     modpack = _normalize_json_path(modpack)
 
     if not _is_modpack_valid(modpack):
@@ -99,26 +100,37 @@ def load_modpack(
     apply_mods: bool = True,
     apply_resourcepacks: bool = False
     ):
-    modpack = _normalize_json_path(modpack)
-
+    logger.debug(modpack, title='load')
+    
     if not _is_modpack_valid(modpack):
         return
+    
+    # obter os dados do modpack
+    modpack = _normalize_json_path(modpack)
+    data = read_json(modpack)
 
+    version = data.get('version')
+    loader = data.get('loader')
+
+    mods = data.get('mods', [])
+    resourcepacks = data.get('resourcepacks', [])
+
+    ctx = _context_from_modpack_data(data)
+    dotminecraft = ctx.dotminecraft
+
+    # manipulação de diretórios
     minecraft_dirs = []
 
     if apply_mods:
-        minecraft_dirs.append(dir_mods)
+        minecraft_dirs.append(dotminecraft.mods)
     if apply_resourcepacks:
-        minecraft_dirs.append(dir_resourcepacks)
+        minecraft_dirs.append(dotminecraft.resourcepacks)
 
     if len(minecraft_dirs) == 0:
         return
 
+    # limpar os diretórios básicos se assim especificado
     for d in minecraft_dirs:
-        # ter certeza de que os diretórios principais existem
-        d.mkdir(exist_ok=True, parents=True)
-
-        # limpar eles se assim especificado
         if delete_previous:
             logger.info('deletando todos os mods anteriores')
 
@@ -126,17 +138,6 @@ def load_modpack(
                 f.unlink()
 
             logger.success('mods deletados')
-
-    # obter os dados do modpack
-    data = read_json(modpack)
-
-    version = data.get('version')
-    loader = data.get('loader')
-
-    mods = data.get('mods')
-    resourcepacks = data.get('resourcepacks')
-
-    ctx = _context_from_modpack_data(data)
 
     # dados extras pro log
     logger.modpack_init(
@@ -148,10 +149,12 @@ def load_modpack(
     # que correspondem a cada mod especificado no arquivo
     if apply_mods:
         for m in mods:
-            resolve_project_downloading(m, 'mod', ctx)
+            project = get_project(m)
+            resolve_project_downloading(project, ctx)
     if apply_resourcepacks:
         for r in resourcepacks:
-            resolve_project_downloading(r, 'resourcepack', ctx)
+            project = get_project(r)
+            resolve_project_downloading(project, ctx)
 
 if __name__ == '__main__':
     modtaur_cli()

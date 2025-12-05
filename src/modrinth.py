@@ -2,48 +2,49 @@ from pathlib import Path
 import requests
 import shutil
 
-from .utils import Context, API_BASE, HEADERS, Project, Version, Dependency
-from .parser import get_compatible_version, get_primary_jar
-from .cache import get_cached_project_data, write_cache
+from .utils import Context, API_BASE, HEADERS, Project, Version, Dependency, File, ensure_directory
+from .parser import get_compatible_version, get_primary_jar, refine_version_list
+from .cache import get_cached_version_list, write_cache, write_version_list_cache
 from . import logger
 
-def download_file(url: str, filename: str, destination_dir: Path):
+def _load_depencencies(raw_deps: list[dict]) -> list[Dependency]:
     """
-    baixa o .jar atribuído a um mod. os valores que identificam esse jar
-    devem ter sido anteriormente já extraído dos dados do projeto
-    
+    converte uma lista de dict em uma lista de Dependency
+    isso serve pra que informações vindas do modrinth possam ser entendidas pelo software
+
     args:
-        url:
-            url do jar. geralemente fica em:
-            0 > files > 0 > url
-            com 0 podendo variar dependendo do índice
-        
-        filename:
-            o nome do arquivo final,
-            também é encontrado no mesmo nível da url
-        
-        destination_dir:
-            lugar de destino do arquivo baixado
-            geralmente é a .minecraft/mods
+        raw_deps:
+            a lista de dicionários que aparece em cada versão individual do projeto. ex:
+            lista-de-versoes: [
+                versao: {
+                    mais-informacoes: lorem ipsum
+                    dependencias: [ <- essa lista
+                        {
+                            informacoes-da-dependencia
+                        }
+                    ]
+                }
+            ]
     """
 
-    if not destination_dir.is_dir():
-        logger.error(f'{destination_dir} não é um diretório')
-        return
-    destination = destination_dir / filename
-    
-    down = requests.get(url, stream=True) # stream baixa em chunks
-    down.raise_for_status()
+    logger.debug('...', title='load dependencies')
 
-    # write bytes, baixa em chunks de 8192 mb
-    # o programa não inicia o próximo até a conclusão desse
-    with destination.open('wb') as dest:
-        for chunk in down.iter_content(chunk_size=8192):
-            dest.write(chunk)
+    dependencies = []
 
-    return destination
+    for raw in raw_deps:
+        # esse project_id não se refere a quem requisitou essa dependência
+        # ele se refere ao projeto da dependência em si
+        project_id = raw.get('project_id')
 
-def _request_project_data(slug: str, section: str | None = 'version'):
+        d = Dependency(
+            project_id=project_id,
+            dependency_type=raw.get('dependency_type')
+        )
+        dependencies.append(d)
+
+    return dependencies
+
+def _request_project_data(slug: str, section: str | None):
     """
     obtém os dados de um projeto do modrinth
     projetos se referem a mods, resourcepacks e datapacks
@@ -87,91 +88,109 @@ def _request_project_data(slug: str, section: str | None = 'version'):
             a ausência desse valor resulta em dados gerais sobre o projeto
     """
 
+    logger.debug(slug, title='request project data')
+
     # construir a url que dá acesso a api do modrinth
     project = f'{API_BASE}/project/{slug}'
     if section == 'version':
         project += '/version'
+
     try:
         response = requests.get(project, headers=HEADERS)
         response.raise_for_status() # evidencia erros caso eles ocorram
 
         response = response.json() # transforma a resposta de texto em json
+        logger.debug('informações do projeto obtidas', title=slug)
+
         return response
     except requests.exceptions.HTTPError:
         logger.error(f'não foi possível obter os dados do projeto. isso provavelmente aconteceu por um slug inexistente', title=slug)
         return
 
+def download_file(url: str, filename: str, destination_dir: Path):
+    """
+    baixa o .jar atribuído a um mod. os valores que identificam esse jar
+    devem ter sido anteriormente já extraído dos dados do projeto
+    
+    args:
+        url:
+            url do jar. geralemente fica em:
+            0 > files > 0 > url
+            com 0 podendo variar dependendo do índice
+        
+        filename:
+            o nome do arquivo final,
+            também é encontrado no mesmo nível da url
+        
+        destination_dir:
+            lugar de destino do arquivo baixado
+            geralmente é a .minecraft/mods
+    """
+
+    logger.debug(url, title='download file')
+
+    if not destination_dir.is_dir():
+        logger.error(f'{destination_dir} não é um diretório')
+        return
+    destination = destination_dir / filename
+    
+    down = requests.get(url, stream=True) # stream baixa em chunks
+    down.raise_for_status()
+
+    # write bytes, baixa em chunks de 8192 mb
+    # o programa não inicia o próximo até a conclusão desse
+    with destination.open('wb') as dest:
+        for chunk in down.iter_content(chunk_size=8192):
+            dest.write(chunk)
+
+    return destination
+
 def get_version_list(slug: str) -> list[Version]:
-    data = _request_project_data(slug)
-    version_list = []
+    """
+    reestrutura os dados da api do modrinth pra serem uma lista de Version
+    mais informações sobre isso na função refine_version_list
+    """
 
-    for v in data:
-        raw_deps = v.get('dependencies', [])
-        dependencies = _load_depencencies(raw_deps)
+    logger.debug(slug, title='get version list')
 
-        version = Version(
-            _parent_slug=slug,
-            game_versions=v.get('game_versions'),
-            loaders=v.get('loaders'),
-            id=v.get('id'),
-            version_type=v.get('version_type'),
-            files=v.get('files'),
-            dependencies=dependencies
-        )
-        version_list.append(version)
+    data = _request_project_data(slug, section='version')
+    version_list = refine_version_list(data, slug)
     
     return version_list
 
-def get_project(slug: str) -> Project:
+def get_project(slug: str, treat_plugin_as_mod: bool = True) -> Project:
+    """
+    args:
+        treat_plugin_as_mod:
+            pra casos tipo o do worldedit, que têm uma versão em plugin
+            mas também funcionam como mod normalmente
+
+            se o projeto em questão tiver o tipo como 'plugin'
+            ele vai convertido e tratado como 'mod'
+    """
+
+    logger.debug(slug, title='get project')
+
     data = _request_project_data(slug, section=None)
+    project_type = data.get('project_type')
+
+    if treat_plugin_as_mod and project_type == 'plugin':
+        project_type = 'mod'
+
     return Project(
         game_versions=data.get('game_versions'),
-        project_type=data.get('project_type'),
+        project_type=project_type,
         id=data.get('id'),
         slug=slug,
         loaders=data.get('loaders')
     )
 
-def _load_depencencies(raw_deps: list[dict]) -> list[Dependency]:
-    """
-    converte uma lista de dict em uma lista de Dependency
-    isso serve pra que informações vindas do modrinth possam ser entendidas pelo software
-
-    args:
-        raw_deps:
-            a lista de dicionários que aparece em cada versão individual do projeto. ex:
-            lista-de-versoes: [
-                versao: {
-                    mais-informacoes: lorem ipsum
-                    dependencias: [ <- essa lista
-                        {
-                            informacoes-da-dependencia
-                        }
-                    ]
-                }
-            ]
-    """
-
-    dependencies = []
-
-    for raw in raw_deps:
-        # esse project_id não se refere a quem requisitou essa dependência
-        # ele se refere ao projeto da dependência em si
-        project_id = raw.get('project_id')
-
-        d = Dependency(
-            _slug=get_slug_from_id(project_id),
-            project_id=project_id,
-            dependency_type=raw.get('dependency_type')
-        )
-        dependencies.append(d)
-
-    return dependencies
-
 def resolve_dependencies(dependencies: list[Dependency], parent_slug: str, ctx: Context):
     """
     verifica quais dependências são obrigatórias pro funcionamento de um projeto e as baixa
     """
+
+    logger.debug(parent_slug, title='resolve dependencies')
 
     dir_mods = ctx.dir_mods
 
@@ -187,30 +206,24 @@ def resolve_dependencies(dependencies: list[Dependency], parent_slug: str, ctx: 
         if not d.dependency_type == 'required':
             continue
         
-        dependency_slug = d._slug
-        project = get_project(dependency_slug)
-        project_type = project.project_type
+        # não continuar caso essa dependência já tenha sido resolvida
+        # caso contrário, adiciona ela no set de resolvidas e prossegue
+        project_id = d.project_id
+        if project_id in ctx.resolved:
+            continue
 
-        resolve_project_downloading(dependency_slug, project_type, ctx, is_dependency_for=parent_slug)
+        ctx.resolved.add(project_id)
+        project = get_project(project_id)
 
-def get_slug_from_id(project_id: str):
-    """
-    obtém o slug (indentificador legível)
-    a partir do id (identificador aleatório) de um projeto
-    """
+        resolve_project_downloading(project=project, ctx=ctx, is_dependency_for=parent_slug)
 
-    data = _request_project_data(project_id, section=None)
-    return data.get('slug')
-
-def resolve_project_downloading(slug: str, project_type: str, ctx: Context, is_dependency_for: str | None = None):
+def resolve_project_downloading(
+    project: Project,
+    ctx: Context,
+    is_dependency_for: str | None = None
+    ):
     """
     args:
-        slug:
-            identificador legível do projeto
-        
-        project_type:
-            mod, resourcepack etc.
-        
         is_dependency_for:
             se é uma dependência de algum outro projeto, deve ser espeficado
             isso serve pro log ser mais detalhado        
@@ -220,37 +233,48 @@ def resolve_project_downloading(slug: str, project_type: str, ctx: Context, is_d
         resolve_dependencies(dependencies, slug, ctx)
         shutil.copy2(target, dir_destination)
 
-        logger.success('mod já baixado encontrado', title=slug, nerdfont_icon=nerdfont_icon, details=dependency_label)
+        logger.success(
+            'mod já baixado encontrado',
+            title=slug, details=dependency_label,
+            nerdfont_icon=nerdfont_icon
+        )
 
     def _search_predownloaded():
-        return dir_predownloaded.rglob(f'*{suffix_type}')
+        return cache_root.rglob(f'*{suffix_type}')
+
+    slug = project.slug
+    project_type = project.project_type
+    id = project.id
 
     version = ctx.version
     loader = ctx.loader
-    dir_predownloaded = ctx.dir_predownloaded
+    cache_root = ctx.cache_root
+    dotminecraft = ctx.dotminecraft
 
+    logger.debug(slug, title='resolve project downloading')
+    
     dir_destination = None
     suffix_type = None
 
     if project_type == 'mod':
-        dir_destination = ctx.dir_mods
+        dir_destination = dotminecraft.mods
         suffix_type = '.jar'
     elif project_type == 'resourcepack':
-        dir_destination = ctx.dir_resourcepacks
+        dir_destination = dotminecraft.resourcepacks
         suffix_type = '.zip'
-    
-    if not dir_destination or not suffix_type:
+    else:
         logger.error(f'{project_type} não parece ser um tipo válido de projeto do modrinth')
         return
 
     # construção de caminhos de pré-baixados e cache
     # + s no final mod -> mods, resourcepack -> resourcepacks
-    subdown = dir_predownloaded / version / (project_type + 's')
+    cached_dest = cache_root / (project_type + 's') / version
     if is_dependency_for is not None:
-        subdown = subdown / 'dependencies'
+        cached_dest = cached_dest / 'dependencies'
+    ensure_directory(cached_dest)
 
-    subdown.mkdir(exist_ok=True, parents=True)
-    cache_file = subdown / '.cache.json'
+    cache_version_dir = ctx.dir_cache_version_lists
+    123[] #FIXME cache_version_dir.mkdir(exist_ok=True, parents=True)
 
     # definir argumentos pro log
     nerdfont_icon = logger.DEFAULT_NERDFONT_ICON
@@ -261,26 +285,26 @@ def resolve_project_downloading(slug: str, project_type: str, ctx: Context, is_d
 
     # tentar obter o projeto pelo cache e pelo diretório de pré-baixados
     # antes de tentar fazer uma requisição pra api e baixar pela web
-    cached = get_cached_project_data(slug, cache_file)
-    if cached:
-        filename = cached.get('filename')
+    version_list = get_cached_version_list(id, cache_version_dir)
+    if version_list:
+        compatible = get_compatible_version(version_list, project, ctx)
+        if compatible:
+            url, filename = get_primary_jar(compatible, ctx)
 
-        for f in _search_predownloaded():
-            if f.name == filename:
-                raw_deps = cached.get('dependencies', [])
-                dependencies = _load_depencencies(raw_deps)
+            for f in _search_predownloaded():
+                if f.name == filename:
+                    dependencies = compatible.dependencies
+                    _install_predownloaded(f, dependencies)
+                    return
 
-                _install_predownloaded(f, dependencies)
-                return
-
-    project = get_project(slug)
     version_list = get_version_list(slug)
-    compatible_version = get_compatible_version(version_list, project, project_type, ctx)
-    if not compatible_version:
+    write_version_list_cache(version_list, cache_version_dir / f'{slug}.json')
+    compatible = get_compatible_version(version_list, project, ctx)
+    if not compatible:
         return
 
-    dependencies = compatible_version.dependencies
-    url, filename = get_primary_jar(compatible_version, ctx)
+    dependencies = compatible.dependencies
+    url, filename = get_primary_jar(compatible, ctx)
 
     # depois de obter os dados, resolve as dependências, baixando as necessárias
     resolve_dependencies(dependencies, slug, ctx)
