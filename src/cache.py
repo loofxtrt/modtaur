@@ -1,4 +1,5 @@
 from pathlib import Path
+from dataclasses import asdict
 import json
 
 from .utils import write_json, read_json, Version, File, Dependency
@@ -37,6 +38,9 @@ def get_cached_version_list(project_id: str, cache_dir: Path) -> list[Version]:
             continue
         
         data = read_json(f)
+        if not isinstance(data, list):
+            continue
+    
         if data[0].get('project_id') == project_id:
             valid_data = data
 
@@ -47,4 +51,10 @@ def get_cached_version_list(project_id: str, cache_dir: Path) -> list[Version]:
     return version_list
 
 def write_version_list_cache(version_list: list[Version], file: Path):
-    write_json(file, version_list)
+    """
+    converte uma lista de Version pra um dicionário comum
+    e escreve esses dados num json
+    """
+
+    dictfied = [ asdict(v) for v in version_list ]
+    write_json(file, dictfied)

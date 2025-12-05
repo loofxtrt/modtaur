@@ -1,2 +1,3112 @@
 [
-    
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "DpcnP84G",
+        "game_versions": [
+            "1.21.10"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/DpcnP84G/SimpleCopperPipes-mc1.21.10-2.1.3.jar",
+                "filename": "SimpleCopperPipes-mc1.21.10-2.1.3.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": [
+            {
+                "project_id": "xzrWQ21Z",
+                "dependency_type": "optional"
+            },
+            {
+                "project_id": "9s6osm5g",
+                "dependency_type": "optional"
+            },
+            {
+                "project_id": "P7dR8mSH",
+                "dependency_type": "required"
+            },
+            {
+                "project_id": "9KawNmQc",
+                "dependency_type": "required"
+            },
+            {
+                "project_id": "mOgUt4GM",
+                "dependency_type": "optional"
+            }
+        ]
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "KdQWLAAi",
+        "game_versions": [
+            "1.21.9"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/KdQWLAAi/SimpleCopperPipes-mc1.21.9-2.1.3.jar",
+                "filename": "SimpleCopperPipes-mc1.21.9-2.1.3.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": [
+            {
+                "project_id": "P7dR8mSH",
+                "dependency_type": "required"
+            },
+            {
+                "project_id": "9s6osm5g",
+                "dependency_type": "optional"
+            },
+            {
+                "project_id": "xzrWQ21Z",
+                "dependency_type": "optional"
+            },
+            {
+                "project_id": "9KawNmQc",
+                "dependency_type": "required"
+            },
+            {
+                "project_id": "mOgUt4GM",
+                "dependency_type": "optional"
+            }
+        ]
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "bcM1dvVT",
+        "game_versions": [
+            "1.21.10"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/bcM1dvVT/SimpleCopperPipes-mc1.21.10-2.1.2.jar",
+                "filename": "SimpleCopperPipes-mc1.21.10-2.1.2.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": [
+            {
+                "project_id": "9s6osm5g",
+                "dependency_type": "optional"
+            },
+            {
+                "project_id": "mOgUt4GM",
+                "dependency_type": "optional"
+            },
+            {
+                "project_id": "9KawNmQc",
+                "dependency_type": "required"
+            },
+            {
+                "project_id": "xzrWQ21Z",
+                "dependency_type": "optional"
+            },
+            {
+                "project_id": "P7dR8mSH",
+                "dependency_type": "required"
+            }
+        ]
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "npyW8LXj",
+        "game_versions": [
+            "1.21.9"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/npyW8LXj/SimpleCopperPipes-mc1.21.9-2.1.2.jar",
+                "filename": "SimpleCopperPipes-mc1.21.9-2.1.2.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": [
+            {
+                "project_id": "P7dR8mSH",
+                "dependency_type": "required"
+            },
+            {
+                "project_id": "9s6osm5g",
+                "dependency_type": "optional"
+            },
+            {
+                "project_id": "xzrWQ21Z",
+                "dependency_type": "optional"
+            },
+            {
+                "project_id": "9KawNmQc",
+                "dependency_type": "required"
+            },
+            {
+                "project_id": "mOgUt4GM",
+                "dependency_type": "optional"
+            }
+        ]
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "dsycOT4n",
+        "game_versions": [
+            "1.21.10"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/dsycOT4n/SimpleCopperPipes-mc1.21.10-2.1.1.jar",
+                "filename": "SimpleCopperPipes-mc1.21.10-2.1.1.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": [
+            {
+                "project_id": "mOgUt4GM",
+                "dependency_type": "optional"
+            },
+            {
+                "project_id": "P7dR8mSH",
+                "dependency_type": "required"
+            },
+            {
+                "project_id": "9s6osm5g",
+                "dependency_type": "optional"
+            },
+            {
+                "project_id": "9KawNmQc",
+                "dependency_type": "required"
+            },
+            {
+                "project_id": "xzrWQ21Z",
+                "dependency_type": "optional"
+            }
+        ]
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "kmQBsCut",
+        "game_versions": [
+            "1.21.9"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/kmQBsCut/SimpleCopperPipes-mc1.21.9-2.1.1.jar",
+                "filename": "SimpleCopperPipes-mc1.21.9-2.1.1.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": [
+            {
+                "project_id": "9KawNmQc",
+                "dependency_type": "required"
+            },
+            {
+                "project_id": "P7dR8mSH",
+                "dependency_type": "required"
+            },
+            {
+                "project_id": "xzrWQ21Z",
+                "dependency_type": "optional"
+            },
+            {
+                "project_id": "mOgUt4GM",
+                "dependency_type": "optional"
+            },
+            {
+                "project_id": "9s6osm5g",
+                "dependency_type": "optional"
+            }
+        ]
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "Ps3kBP4S",
+        "game_versions": [
+            "1.21.9",
+            "1.21.10"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/Ps3kBP4S/SimpleCopperPipes-mc1.21.9-2.1.jar",
+                "filename": "SimpleCopperPipes-mc1.21.9-2.1.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": [
+            {
+                "project_id": "9s6osm5g",
+                "dependency_type": "optional"
+            },
+            {
+                "project_id": "9KawNmQc",
+                "dependency_type": "required"
+            },
+            {
+                "project_id": "mOgUt4GM",
+                "dependency_type": "optional"
+            },
+            {
+                "project_id": "P7dR8mSH",
+                "dependency_type": "required"
+            }
+        ]
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "1hK4RC2l",
+        "game_versions": [
+            "1.21.6",
+            "1.21.7",
+            "1.21.8"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/1hK4RC2l/SimpleCopperPipes-mc1.21.6-2.0.7.jar",
+                "filename": "SimpleCopperPipes-mc1.21.6-2.0.7.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": [
+            {
+                "project_id": "9s6osm5g",
+                "dependency_type": "optional"
+            },
+            {
+                "project_id": "9KawNmQc",
+                "dependency_type": "required"
+            },
+            {
+                "project_id": "P7dR8mSH",
+                "dependency_type": "required"
+            },
+            {
+                "project_id": "mOgUt4GM",
+                "dependency_type": "optional"
+            }
+        ]
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "loJugPYH",
+        "game_versions": [
+            "1.21.5"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/loJugPYH/SimpleCopperPipes-mc1.21.5-2.0.6.jar",
+                "filename": "SimpleCopperPipes-mc1.21.5-2.0.6.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": [
+            {
+                "project_id": "9KawNmQc",
+                "dependency_type": "required"
+            },
+            {
+                "project_id": "P7dR8mSH",
+                "dependency_type": "required"
+            }
+        ]
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "eSc3BziT",
+        "game_versions": [
+            "1.21.4"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/eSc3BziT/SimpleCopperPipes-mc1.21.4-2.0.6.jar",
+                "filename": "SimpleCopperPipes-mc1.21.4-2.0.6.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": [
+            {
+                "project_id": "P7dR8mSH",
+                "dependency_type": "required"
+            },
+            {
+                "project_id": "9KawNmQc",
+                "dependency_type": "required"
+            }
+        ]
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "9hdQnCMc",
+        "game_versions": [
+            "1.21.2",
+            "1.21.3"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/9hdQnCMc/SimpleCopperPipes-mc1.21.2-2.0.6.jar",
+                "filename": "SimpleCopperPipes-mc1.21.2-2.0.6.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": [
+            {
+                "project_id": "P7dR8mSH",
+                "dependency_type": "required"
+            },
+            {
+                "project_id": "9KawNmQc",
+                "dependency_type": "required"
+            }
+        ]
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "OiCkwg79",
+        "game_versions": [
+            "1.21",
+            "1.21.1"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/OiCkwg79/SimpleCopperPipes-mc1.21.1-2.0.6.jar",
+                "filename": "SimpleCopperPipes-mc1.21.1-2.0.6.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": [
+            {
+                "project_id": "P7dR8mSH",
+                "dependency_type": "required"
+            },
+            {
+                "project_id": "9KawNmQc",
+                "dependency_type": "required"
+            }
+        ]
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "gIyCUpzQ",
+        "game_versions": [
+            "1.21.4"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/gIyCUpzQ/SimpleCopperPipes-mc1.21.4-2.0.5.jar",
+                "filename": "SimpleCopperPipes-mc1.21.4-2.0.5.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": [
+            {
+                "project_id": "9KawNmQc",
+                "dependency_type": "required"
+            },
+            {
+                "project_id": "P7dR8mSH",
+                "dependency_type": "required"
+            },
+            {
+                "project_id": "mOgUt4GM",
+                "dependency_type": "required"
+            },
+            {
+                "project_id": "9s6osm5g",
+                "dependency_type": "optional"
+            }
+        ]
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "bvKVtD1r",
+        "game_versions": [
+            "1.21.2",
+            "1.21.3"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/bvKVtD1r/SimpleCopperPipes-mc1.21.2-2.0.5.jar",
+                "filename": "SimpleCopperPipes-mc1.21.2-2.0.5.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": [
+            {
+                "project_id": "9s6osm5g",
+                "dependency_type": "optional"
+            },
+            {
+                "project_id": "mOgUt4GM",
+                "dependency_type": "optional"
+            },
+            {
+                "project_id": "P7dR8mSH",
+                "dependency_type": "required"
+            },
+            {
+                "project_id": "9KawNmQc",
+                "dependency_type": "required"
+            }
+        ]
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "Zrb0ZqS8",
+        "game_versions": [
+            "1.21",
+            "1.21.1"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/Zrb0ZqS8/SimpleCopperPipes-mc1.21.1-2.0.5.jar",
+                "filename": "SimpleCopperPipes-mc1.21.1-2.0.5.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": [
+            {
+                "project_id": "P7dR8mSH",
+                "dependency_type": "required"
+            },
+            {
+                "project_id": "9KawNmQc",
+                "dependency_type": "required"
+            },
+            {
+                "project_id": "mOgUt4GM",
+                "dependency_type": "optional"
+            },
+            {
+                "project_id": "9s6osm5g",
+                "dependency_type": "optional"
+            }
+        ]
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "xe4E3Uh1",
+        "game_versions": [
+            "1.21.4"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/xe4E3Uh1/SimpleCopperPipes-mc1.21.4-2.0.4.jar",
+                "filename": "SimpleCopperPipes-mc1.21.4-2.0.4.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": [
+            {
+                "project_id": "9s6osm5g",
+                "dependency_type": "optional"
+            },
+            {
+                "project_id": "mOgUt4GM",
+                "dependency_type": "optional"
+            },
+            {
+                "project_id": "P7dR8mSH",
+                "dependency_type": "required"
+            },
+            {
+                "project_id": "9KawNmQc",
+                "dependency_type": "required"
+            }
+        ]
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "1NFhhOfM",
+        "game_versions": [
+            "1.21.2",
+            "1.21.3"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/1NFhhOfM/SimpleCopperPipes-mc1.21.2-2.0.4.jar",
+                "filename": "SimpleCopperPipes-mc1.21.2-2.0.4.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": [
+            {
+                "project_id": "9KawNmQc",
+                "dependency_type": "required"
+            },
+            {
+                "project_id": "9s6osm5g",
+                "dependency_type": "optional"
+            },
+            {
+                "project_id": "P7dR8mSH",
+                "dependency_type": "required"
+            },
+            {
+                "project_id": "mOgUt4GM",
+                "dependency_type": "optional"
+            }
+        ]
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "5d27deAL",
+        "game_versions": [
+            "1.21",
+            "1.21.1"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/5d27deAL/SimpleCopperPipes-mc1.21.1-2.0.4.jar",
+                "filename": "SimpleCopperPipes-mc1.21.1-2.0.4.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": [
+            {
+                "project_id": "9KawNmQc",
+                "dependency_type": "required"
+            },
+            {
+                "project_id": "9s6osm5g",
+                "dependency_type": "optional"
+            },
+            {
+                "project_id": "mOgUt4GM",
+                "dependency_type": "optional"
+            },
+            {
+                "project_id": "P7dR8mSH",
+                "dependency_type": "required"
+            }
+        ]
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "kUCsby3t",
+        "game_versions": [
+            "1.20.1"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/kUCsby3t/SimpleCopperPipes-mc1.20.1-2.0.3.jar",
+                "filename": "SimpleCopperPipes-mc1.20.1-2.0.3.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": [
+            {
+                "project_id": "9KawNmQc",
+                "dependency_type": "required"
+            },
+            {
+                "project_id": "9s6osm5g",
+                "dependency_type": "optional"
+            },
+            {
+                "project_id": "P7dR8mSH",
+                "dependency_type": "required"
+            },
+            {
+                "project_id": "mOgUt4GM",
+                "dependency_type": "optional"
+            }
+        ]
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "4P7GtiZx",
+        "game_versions": [
+            "1.21",
+            "1.21.1"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/4P7GtiZx/SimpleCopperPipes-mc1.21.1-2.0.3.jar",
+                "filename": "SimpleCopperPipes-mc1.21.1-2.0.3.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": [
+            {
+                "project_id": "P7dR8mSH",
+                "dependency_type": "required"
+            },
+            {
+                "project_id": "9s6osm5g",
+                "dependency_type": "optional"
+            },
+            {
+                "project_id": "9KawNmQc",
+                "dependency_type": "required"
+            },
+            {
+                "project_id": "mOgUt4GM",
+                "dependency_type": "optional"
+            }
+        ]
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "b2EUC6GL",
+        "game_versions": [
+            "1.21.2",
+            "1.21.3"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/b2EUC6GL/SimpleCopperPipes-mc1.21.2-2.0.3.jar",
+                "filename": "SimpleCopperPipes-mc1.21.2-2.0.3.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": [
+            {
+                "project_id": "9KawNmQc",
+                "dependency_type": "required"
+            },
+            {
+                "project_id": "P7dR8mSH",
+                "dependency_type": "required"
+            },
+            {
+                "project_id": "mOgUt4GM",
+                "dependency_type": "optional"
+            },
+            {
+                "project_id": "9s6osm5g",
+                "dependency_type": "optional"
+            }
+        ]
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "beKju3ZQ",
+        "game_versions": [
+            "1.20.1"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/beKju3ZQ/SimpleCopperPipes-mc1.20.1-2.0.2.jar",
+                "filename": "SimpleCopperPipes-mc1.20.1-2.0.2.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": [
+            {
+                "project_id": "9s6osm5g",
+                "dependency_type": "optional"
+            },
+            {
+                "project_id": "P7dR8mSH",
+                "dependency_type": "required"
+            },
+            {
+                "project_id": "9KawNmQc",
+                "dependency_type": "required"
+            },
+            {
+                "project_id": "mOgUt4GM",
+                "dependency_type": "optional"
+            }
+        ]
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "knOqHFPW",
+        "game_versions": [
+            "1.21",
+            "1.21.1"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/knOqHFPW/SimpleCopperPipes-mc1.21.1-2.0.2.jar",
+                "filename": "SimpleCopperPipes-mc1.21.1-2.0.2.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": [
+            {
+                "project_id": "mOgUt4GM",
+                "dependency_type": "optional"
+            },
+            {
+                "project_id": "9KawNmQc",
+                "dependency_type": "required"
+            },
+            {
+                "project_id": "P7dR8mSH",
+                "dependency_type": "required"
+            },
+            {
+                "project_id": "9s6osm5g",
+                "dependency_type": "optional"
+            }
+        ]
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "wnVUwBv6",
+        "game_versions": [
+            "1.21.2",
+            "1.21.3"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/wnVUwBv6/SimpleCopperPipes-mc1.21.2-2.0.2.jar",
+                "filename": "SimpleCopperPipes-mc1.21.2-2.0.2.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": [
+            {
+                "project_id": "9s6osm5g",
+                "dependency_type": "optional"
+            },
+            {
+                "project_id": "P7dR8mSH",
+                "dependency_type": "required"
+            },
+            {
+                "project_id": "9KawNmQc",
+                "dependency_type": "required"
+            },
+            {
+                "project_id": "mOgUt4GM",
+                "dependency_type": "optional"
+            }
+        ]
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "uKSC4ZdK",
+        "game_versions": [
+            "1.21",
+            "1.21.1"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/uKSC4ZdK/SimpleCopperPipes-2.0.1.jar",
+                "filename": "SimpleCopperPipes-2.0.1.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": [
+            {
+                "project_id": "P7dR8mSH",
+                "dependency_type": "required"
+            },
+            {
+                "project_id": "9KawNmQc",
+                "dependency_type": "required"
+            }
+        ]
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "66O1gNQr",
+        "game_versions": [
+            "1.20.1"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/66O1gNQr/SimpleCopperPipes-mc1.20.1-2.0.1.jar",
+                "filename": "SimpleCopperPipes-mc1.20.1-2.0.1.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": [
+            {
+                "project_id": "P7dR8mSH",
+                "dependency_type": "required"
+            },
+            {
+                "project_id": "9KawNmQc",
+                "dependency_type": "required"
+            }
+        ]
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "DvLSLBqQ",
+        "game_versions": [
+            "1.21.2-rc1",
+            "1.21.2-rc2",
+            "1.21.2",
+            "1.21.3"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/DvLSLBqQ/SimpleCopperPipes-2.0.1.jar",
+                "filename": "SimpleCopperPipes-2.0.1.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": [
+            {
+                "project_id": "9KawNmQc",
+                "dependency_type": "embedded"
+            },
+            {
+                "project_id": "9s6osm5g",
+                "dependency_type": "optional"
+            },
+            {
+                "project_id": "P7dR8mSH",
+                "dependency_type": "required"
+            },
+            {
+                "project_id": "mOgUt4GM",
+                "dependency_type": "optional"
+            }
+        ]
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "8WV3U3dD",
+        "game_versions": [
+            "1.21",
+            "1.21.1"
+        ],
+        "loaders": [
+            "fabric"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/8WV3U3dD/SimpleCopperPipes-2.0.jar",
+                "filename": "SimpleCopperPipes-2.0.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": [
+            {
+                "project_id": "9KawNmQc",
+                "dependency_type": "required"
+            },
+            {
+                "project_id": "9s6osm5g",
+                "dependency_type": "optional"
+            },
+            {
+                "project_id": "mOgUt4GM",
+                "dependency_type": "optional"
+            },
+            {
+                "project_id": "P7dR8mSH",
+                "dependency_type": "required"
+            }
+        ]
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "4X6dOYLU",
+        "game_versions": [
+            "1.20.6"
+        ],
+        "loaders": [
+            "fabric"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/4X6dOYLU/SimpleCopperPipes-2.0.jar",
+                "filename": "SimpleCopperPipes-2.0.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": [
+            {
+                "project_id": "9s6osm5g",
+                "dependency_type": "optional"
+            },
+            {
+                "project_id": "P7dR8mSH",
+                "dependency_type": "required"
+            },
+            {
+                "project_id": "mOgUt4GM",
+                "dependency_type": "optional"
+            },
+            {
+                "project_id": "9KawNmQc",
+                "dependency_type": "embedded"
+            }
+        ]
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "Ogzd0CTk",
+        "game_versions": [
+            "1.20.6"
+        ],
+        "loaders": [
+            "fabric"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/Ogzd0CTk/SimpleCopperPipes-1.20.6-1.17.jar",
+                "filename": "SimpleCopperPipes-1.20.6-1.17.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": [
+            {
+                "project_id": "P7dR8mSH",
+                "dependency_type": "required"
+            },
+            {
+                "project_id": "9s6osm5g",
+                "dependency_type": "optional"
+            },
+            {
+                "project_id": "9KawNmQc",
+                "dependency_type": "embedded"
+            },
+            {
+                "project_id": "mOgUt4GM",
+                "dependency_type": "optional"
+            }
+        ]
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "cKpjhpJs",
+        "game_versions": [
+            "1.20.6"
+        ],
+        "loaders": [
+            "fabric"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/cKpjhpJs/SimpleCopperPipes-1.20.6-1.16.1.jar",
+                "filename": "SimpleCopperPipes-1.20.6-1.16.1.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": [
+            {
+                "project_id": "P7dR8mSH",
+                "dependency_type": "required"
+            },
+            {
+                "project_id": "9KawNmQc",
+                "dependency_type": "required"
+            },
+            {
+                "project_id": "mOgUt4GM",
+                "dependency_type": "optional"
+            },
+            {
+                "project_id": "9s6osm5g",
+                "dependency_type": "optional"
+            }
+        ]
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "RMObPif0",
+        "game_versions": [
+            "1.20.1"
+        ],
+        "loaders": [
+            "fabric"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/RMObPif0/SimpleCopperPipes-1.20.1-1.16.1.jar",
+                "filename": "SimpleCopperPipes-1.20.1-1.16.1.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": [
+            {
+                "project_id": "AtHRJSUW",
+                "dependency_type": "optional"
+            },
+            {
+                "project_id": "9KawNmQc",
+                "dependency_type": "embedded"
+            },
+            {
+                "project_id": "mOgUt4GM",
+                "dependency_type": "optional"
+            },
+            {
+                "project_id": "9s6osm5g",
+                "dependency_type": "optional"
+            },
+            {
+                "project_id": "P7dR8mSH",
+                "dependency_type": "required"
+            }
+        ]
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "aNc9MS3Y",
+        "game_versions": [
+            "1.20.4"
+        ],
+        "loaders": [
+            "fabric"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/aNc9MS3Y/SimpleCopperPipes-1.20.4-1.16.1.jar",
+                "filename": "SimpleCopperPipes-1.20.4-1.16.1.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": [
+            {
+                "project_id": "mOgUt4GM",
+                "dependency_type": "optional"
+            },
+            {
+                "project_id": "9s6osm5g",
+                "dependency_type": "optional"
+            },
+            {
+                "project_id": "P7dR8mSH",
+                "dependency_type": "required"
+            },
+            {
+                "project_id": "9KawNmQc",
+                "dependency_type": "embedded"
+            },
+            {
+                "project_id": "AtHRJSUW",
+                "dependency_type": "optional"
+            }
+        ]
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "4qLWHaik",
+        "game_versions": [
+            "1.20.2"
+        ],
+        "loaders": [
+            "fabric"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/4qLWHaik/SimpleCopperPipes-1.20.2-1.16.1.jar",
+                "filename": "SimpleCopperPipes-1.20.2-1.16.1.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": [
+            {
+                "project_id": "AtHRJSUW",
+                "dependency_type": "optional"
+            },
+            {
+                "project_id": "P7dR8mSH",
+                "dependency_type": "required"
+            },
+            {
+                "project_id": "mOgUt4GM",
+                "dependency_type": "optional"
+            },
+            {
+                "project_id": "9s6osm5g",
+                "dependency_type": "optional"
+            },
+            {
+                "project_id": "9KawNmQc",
+                "dependency_type": "embedded"
+            }
+        ]
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "TCmoc5Sl",
+        "game_versions": [
+            "1.20.4"
+        ],
+        "loaders": [
+            "fabric"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/TCmoc5Sl/SimpleCopperPipes-1.20.4-1.16.jar",
+                "filename": "SimpleCopperPipes-1.20.4-1.16.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": [
+            {
+                "project_id": "9s6osm5g",
+                "dependency_type": "optional"
+            },
+            {
+                "project_id": "9KawNmQc",
+                "dependency_type": "embedded"
+            },
+            {
+                "project_id": "mOgUt4GM",
+                "dependency_type": "optional"
+            },
+            {
+                "project_id": "P7dR8mSH",
+                "dependency_type": "required"
+            }
+        ]
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "DonIUBAf",
+        "game_versions": [
+            "1.20.1"
+        ],
+        "loaders": [
+            "fabric"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/DonIUBAf/SimpleCopperPipes-1.20.1-1.16.jar",
+                "filename": "SimpleCopperPipes-1.20.1-1.16.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": [
+            {
+                "project_id": "9s6osm5g",
+                "dependency_type": "optional"
+            },
+            {
+                "project_id": "P7dR8mSH",
+                "dependency_type": "required"
+            },
+            {
+                "project_id": "mOgUt4GM",
+                "dependency_type": "optional"
+            },
+            {
+                "project_id": "9KawNmQc",
+                "dependency_type": "embedded"
+            }
+        ]
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "G9vP8wc0",
+        "game_versions": [
+            "1.20.2"
+        ],
+        "loaders": [
+            "fabric"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/G9vP8wc0/SimpleCopperPipes-1.20.2-1.16.jar",
+                "filename": "SimpleCopperPipes-1.20.2-1.16.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": [
+            {
+                "project_id": "mOgUt4GM",
+                "dependency_type": "optional"
+            },
+            {
+                "project_id": "9s6osm5g",
+                "dependency_type": "optional"
+            },
+            {
+                "project_id": "P7dR8mSH",
+                "dependency_type": "required"
+            },
+            {
+                "project_id": "9KawNmQc",
+                "dependency_type": "embedded"
+            }
+        ]
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "wPuMjxmV",
+        "game_versions": [
+            "1.20.1"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/wPuMjxmV/SimpleCopperPipes-1.20.1-1.15.5.jar",
+                "filename": "SimpleCopperPipes-1.20.1-1.15.5.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": [
+            {
+                "project_id": "P7dR8mSH",
+                "dependency_type": "required"
+            },
+            {
+                "project_id": "mOgUt4GM",
+                "dependency_type": "optional"
+            },
+            {
+                "project_id": "9s6osm5g",
+                "dependency_type": "optional"
+            },
+            {
+                "project_id": "9KawNmQc",
+                "dependency_type": "embedded"
+            }
+        ]
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "Lwq9reXT",
+        "game_versions": [
+            "1.20.2"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/Lwq9reXT/SimpleCopperPipes-1.20.2-1.15.5.jar",
+                "filename": "SimpleCopperPipes-1.20.2-1.15.5.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": [
+            {
+                "project_id": "9s6osm5g",
+                "dependency_type": "optional"
+            },
+            {
+                "project_id": "mOgUt4GM",
+                "dependency_type": "optional"
+            },
+            {
+                "project_id": "P7dR8mSH",
+                "dependency_type": "required"
+            },
+            {
+                "project_id": "9KawNmQc",
+                "dependency_type": "embedded"
+            }
+        ]
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "IJ5tVtsR",
+        "game_versions": [
+            "1.20.1"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/IJ5tVtsR/SimpleCopperPipes-1.15.4-1.20.1.jar",
+                "filename": "SimpleCopperPipes-1.15.4-1.20.1.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": [
+            {
+                "project_id": "9s6osm5g",
+                "dependency_type": "optional"
+            },
+            {
+                "project_id": "P7dR8mSH",
+                "dependency_type": "required"
+            },
+            {
+                "project_id": "9KawNmQc",
+                "dependency_type": "embedded"
+            },
+            {
+                "project_id": "mOgUt4GM",
+                "dependency_type": "optional"
+            }
+        ]
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "tINoAkAa",
+        "game_versions": [
+            "1.20.2"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/tINoAkAa/SimpleCopperPipes-1.15.4.jar",
+                "filename": "SimpleCopperPipes-1.15.4.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": [
+            {
+                "project_id": "mOgUt4GM",
+                "dependency_type": "optional"
+            },
+            {
+                "project_id": "9KawNmQc",
+                "dependency_type": "embedded"
+            },
+            {
+                "project_id": "9s6osm5g",
+                "dependency_type": "optional"
+            },
+            {
+                "project_id": "P7dR8mSH",
+                "dependency_type": "required"
+            }
+        ]
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "iuhPovqT",
+        "game_versions": [
+            "1.20.2"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/iuhPovqT/SimpleCopperPipes-1.15.3.jar",
+                "filename": "SimpleCopperPipes-1.15.3.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": [
+            {
+                "project_id": "9s6osm5g",
+                "dependency_type": "optional"
+            },
+            {
+                "project_id": "P7dR8mSH",
+                "dependency_type": "required"
+            },
+            {
+                "project_id": "mOgUt4GM",
+                "dependency_type": "optional"
+            },
+            {
+                "project_id": "9KawNmQc",
+                "dependency_type": "embedded"
+            }
+        ]
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "Ec42ndUG",
+        "game_versions": [
+            "1.20.2"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/Ec42ndUG/SimpleCopperPipes-1.15.2.jar",
+                "filename": "SimpleCopperPipes-1.15.2.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": [
+            {
+                "project_id": "9KawNmQc",
+                "dependency_type": "embedded"
+            },
+            {
+                "project_id": "9s6osm5g",
+                "dependency_type": "optional"
+            },
+            {
+                "project_id": "mOgUt4GM",
+                "dependency_type": "optional"
+            },
+            {
+                "project_id": "P7dR8mSH",
+                "dependency_type": "required"
+            }
+        ]
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "oAWst0hS",
+        "game_versions": [
+            "1.20.2"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/oAWst0hS/SimpleCopperPipes-1.15.1.jar",
+                "filename": "SimpleCopperPipes-1.15.1.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": [
+            {
+                "project_id": "P7dR8mSH",
+                "dependency_type": "required"
+            },
+            {
+                "project_id": "9s6osm5g",
+                "dependency_type": "optional"
+            },
+            {
+                "project_id": "9KawNmQc",
+                "dependency_type": "embedded"
+            }
+        ]
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "dSBv3axo",
+        "game_versions": [
+            "1.20.2"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/dSBv3axo/SimpleCopperPipes-1.15.jar",
+                "filename": "SimpleCopperPipes-1.15.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": [
+            {
+                "project_id": "P7dR8mSH",
+                "dependency_type": "required"
+            },
+            {
+                "project_id": "9KawNmQc",
+                "dependency_type": "embedded"
+            },
+            {
+                "project_id": "9s6osm5g",
+                "dependency_type": "optional"
+            }
+        ]
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "dd9U7ewC",
+        "game_versions": [
+            "1.20.2"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/dd9U7ewC/SimpleCopperPipes-1.14.jar",
+                "filename": "SimpleCopperPipes-1.14.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": [
+            {
+                "project_id": "P7dR8mSH",
+                "dependency_type": "required"
+            },
+            {
+                "project_id": "9s6osm5g",
+                "dependency_type": "optional"
+            },
+            {
+                "project_id": "9KawNmQc",
+                "dependency_type": "embedded"
+            }
+        ]
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "2wG0N40d",
+        "game_versions": [
+            "1.20.1"
+        ],
+        "loaders": [
+            "fabric"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/2wG0N40d/SimpleCopperPipes-1.14.jar",
+                "filename": "SimpleCopperPipes-1.14.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": [
+            {
+                "project_id": "9KawNmQc",
+                "dependency_type": "embedded"
+            },
+            {
+                "project_id": "9s6osm5g",
+                "dependency_type": "optional"
+            },
+            {
+                "project_id": "P7dR8mSH",
+                "dependency_type": "required"
+            }
+        ]
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "FKt8JNOd",
+        "game_versions": [
+            "1.20",
+            "1.20.1"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/FKt8JNOd/SimpleCopperPipes-1.13.6.jar",
+                "filename": "SimpleCopperPipes-1.13.6.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": [
+            {
+                "project_id": "P7dR8mSH",
+                "dependency_type": "required"
+            }
+        ]
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "QII3TzT1",
+        "game_versions": [
+            "1.20",
+            "1.20.1"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/QII3TzT1/SimpleCopperPipes-1.13.5.jar",
+                "filename": "SimpleCopperPipes-1.13.5.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": [
+            {
+                "project_id": "P7dR8mSH",
+                "dependency_type": "required"
+            }
+        ]
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "REsjlj43",
+        "game_versions": [
+            "1.20",
+            "1.20.1"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/REsjlj43/SimpleCopperPipes-1.13.4.jar",
+                "filename": "SimpleCopperPipes-1.13.4.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": [
+            {
+                "project_id": "P7dR8mSH",
+                "dependency_type": "required"
+            }
+        ]
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "f8hsWFFR",
+        "game_versions": [
+            "1.18.2"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/f8hsWFFR/lunade-copper-pipe-1.12.1-1.18.2.jar",
+                "filename": "lunade-copper-pipe-1.12.1-1.18.2.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": [
+            {
+                "project_id": "P7dR8mSH",
+                "dependency_type": "required"
+            }
+        ]
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "3kZPzEZF",
+        "game_versions": [
+            "1.19.4"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/3kZPzEZF/SimpleCopperPipes-1.13.3-1.19.4.jar",
+                "filename": "SimpleCopperPipes-1.13.3-1.19.4.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": [
+            {
+                "project_id": "P7dR8mSH",
+                "dependency_type": "required"
+            }
+        ]
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "6z9SSIsk",
+        "game_versions": [
+            "1.19.3"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/6z9SSIsk/SimpleCopperPipes-1.13.3-1.19.3.jar",
+                "filename": "SimpleCopperPipes-1.13.3-1.19.3.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": [
+            {
+                "project_id": "P7dR8mSH",
+                "dependency_type": "required"
+            }
+        ]
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "Dv34ewqS",
+        "game_versions": [
+            "1.19",
+            "1.19.1",
+            "1.19.2"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/Dv34ewqS/SimpleCopperPipes-1.13.3-1.19.jar",
+                "filename": "SimpleCopperPipes-1.13.3-1.19.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": [
+            {
+                "project_id": "P7dR8mSH",
+                "dependency_type": "required"
+            }
+        ]
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "q8DOigeD",
+        "game_versions": [
+            "1.20-pre2",
+            "1.20-pre3",
+            "1.20-pre4",
+            "1.20-pre5",
+            "1.20-pre6",
+            "1.20-pre7",
+            "1.20-rc1",
+            "1.20",
+            "1.20.1-rc1",
+            "1.20.1"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/q8DOigeD/SimpleCopperPipes-1.13.3.jar",
+                "filename": "SimpleCopperPipes-1.13.3.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": [
+            {
+                "project_id": "P7dR8mSH",
+                "dependency_type": "required"
+            }
+        ]
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "yEo98Vbe",
+        "game_versions": [
+            "1.20-pre2",
+            "1.20-pre3",
+            "1.20-pre4",
+            "1.20-pre5",
+            "1.20-pre6",
+            "1.20-pre7",
+            "1.20-rc1",
+            "1.20"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/yEo98Vbe/SimpleCopperPipes-1.13.1-1.20.jar",
+                "filename": "SimpleCopperPipes-1.13.1-1.20.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": []
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "Ev2KSSWR",
+        "game_versions": [
+            "1.20-pre1"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/Ev2KSSWR/SimpleCopperPipes-1.13.1-1.20.jar",
+                "filename": "SimpleCopperPipes-1.13.1-1.20.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": [
+            {
+                "project_id": "P7dR8mSH",
+                "dependency_type": "required"
+            }
+        ]
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "DW7nb3EV",
+        "game_versions": [
+            "1.19.4"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/DW7nb3EV/SimpleCopperPipes-1.13.1-1.19.4.jar",
+                "filename": "SimpleCopperPipes-1.13.1-1.19.4.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": [
+            {
+                "project_id": "P7dR8mSH",
+                "dependency_type": "required"
+            }
+        ]
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "Bbv9W1V2",
+        "game_versions": [
+            "1.19.3"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/Bbv9W1V2/SimpleCopperPipes-1.13.1-1.19.3.jar",
+                "filename": "SimpleCopperPipes-1.13.1-1.19.3.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": []
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "IA34tUwL",
+        "game_versions": [
+            "1.19",
+            "1.19.1",
+            "1.19.2"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/IA34tUwL/SimpleCopperPipes-1.13.1.jar",
+                "filename": "SimpleCopperPipes-1.13.1.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": [
+            {
+                "project_id": "P7dR8mSH",
+                "dependency_type": "required"
+            }
+        ]
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "lh10V3r2",
+        "game_versions": [
+            "1.19.4"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/lh10V3r2/lunade-copper-pipe-1.13-1.19.4.jar",
+                "filename": "lunade-copper-pipe-1.13-1.19.4.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": []
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "t4mTUYnO",
+        "game_versions": [
+            "1.19.3"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/t4mTUYnO/lunade-copper-pipe-1.13-1.19.3.jar",
+                "filename": "lunade-copper-pipe-1.13-1.19.3.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": []
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "jv9W8HOA",
+        "game_versions": [
+            "1.19",
+            "1.19.1",
+            "1.19.2"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/jv9W8HOA/lunade-copper-pipe-1.13.jar",
+                "filename": "lunade-copper-pipe-1.13.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": []
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "e7FaUuF7",
+        "game_versions": [
+            "1.19.4"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/e7FaUuF7/lunade-copper-pipe-1.12-1.19.4.jar",
+                "filename": "lunade-copper-pipe-1.12-1.19.4.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": [
+            {
+                "project_id": "P7dR8mSH",
+                "dependency_type": "required"
+            }
+        ]
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "95Hqzg01",
+        "game_versions": [
+            "23w04a"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/95Hqzg01/lunade-copper-pipe-1.12-1.19.4.jar",
+                "filename": "lunade-copper-pipe-1.12-1.19.4.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": [
+            {
+                "project_id": "P7dR8mSH",
+                "dependency_type": "required"
+            }
+        ]
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "fQzVGfa5",
+        "game_versions": [
+            "1.18.2"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/fQzVGfa5/lunade-copper-pipe-1.12a-1.18.2.jar",
+                "filename": "lunade-copper-pipe-1.12a-1.18.2.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": [
+            {
+                "project_id": "P7dR8mSH",
+                "dependency_type": "required"
+            }
+        ]
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "LtEo7Fqi",
+        "game_versions": [
+            "1.19.3"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/LtEo7Fqi/lunade-copper-pipe-1.12-1.19.3.jar",
+                "filename": "lunade-copper-pipe-1.12-1.19.3.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": [
+            {
+                "project_id": "P7dR8mSH",
+                "dependency_type": "required"
+            }
+        ]
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "VrYxGcg0",
+        "game_versions": [
+            "1.19",
+            "1.19.1",
+            "1.19.2"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/VrYxGcg0/lunade-copper-pipe-1.12a.jar",
+                "filename": "lunade-copper-pipe-1.12a.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": [
+            {
+                "project_id": "P7dR8mSH",
+                "dependency_type": "required"
+            }
+        ]
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "fo6V4hr5",
+        "game_versions": [
+            "1.19.3"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/fo6V4hr5/lunade-copper-pipe-1.11.4-1.19.3.jar",
+                "filename": "lunade-copper-pipe-1.11.4-1.19.3.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": []
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "mqmb5sfw",
+        "game_versions": [
+            "22w46a"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "alpha",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/mqmb5sfw/lunade-copper-pipe-1.11.4-22w46a.jar",
+                "filename": "lunade-copper-pipe-1.11.4-22w46a.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": []
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "Ze717MYv",
+        "game_versions": [
+            "1.19",
+            "1.19.1",
+            "1.19.2"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/Ze717MYv/lunade-copper-pipe-1.11.4.jar",
+                "filename": "lunade-copper-pipe-1.11.4.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": []
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "3dtgrapp",
+        "game_versions": [
+            "1.18.2"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/3dtgrapp/lunade-copper-pipe-1.11.4-1.18.2.jar",
+                "filename": "lunade-copper-pipe-1.11.4-1.18.2.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": []
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "HqiLiKMi",
+        "game_versions": [
+            "22w46a"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/HqiLiKMi/lunade-copper-pipe-1.11.3-22w46a.jar",
+                "filename": "lunade-copper-pipe-1.11.3-22w46a.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": []
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "4IZ3pnIQ",
+        "game_versions": [
+            "22w45a"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/4IZ3pnIQ/lunade-copper-pipe-1.11.3-22w45a.jar",
+                "filename": "lunade-copper-pipe-1.11.3-22w45a.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": []
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "fToOAJrL",
+        "game_versions": [
+            "22w43a"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/fToOAJrL/lunade-copper-pipe-1.11.3-22w43a.jar",
+                "filename": "lunade-copper-pipe-1.11.3-22w43a.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": []
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "R3iwOJGr",
+        "game_versions": [
+            "1.18.2"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/R3iwOJGr/lunade-copper-pipe-1.11.3-1.18.2.jar",
+                "filename": "lunade-copper-pipe-1.11.3-1.18.2.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": []
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "BoibvsBu",
+        "game_versions": [
+            "22w42a"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "alpha",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/BoibvsBu/lunade-copper-pipe-1.11.3-22w42a.jar",
+                "filename": "lunade-copper-pipe-1.11.3-22w42a.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": []
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "mZjDvoCa",
+        "game_versions": [
+            "1.19",
+            "1.19.1",
+            "1.19.2"
+        ],
+        "loaders": [
+            "forge",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/mZjDvoCa/lunade-copper-pipe-1.11.3.jar",
+                "filename": "lunade-copper-pipe-1.11.3.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": []
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "O4KfZL8f",
+        "game_versions": [
+            "22w42a"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "alpha",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/O4KfZL8f/lunade-copper-pipe-1.11.2-22w42a.jar",
+                "filename": "lunade-copper-pipe-1.11.2-22w42a.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": []
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "ExafmHT8",
+        "game_versions": [
+            "1.19",
+            "1.19.1",
+            "1.19.2"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/ExafmHT8/lunade-copper-pipe-1.11.2.jar",
+                "filename": "lunade-copper-pipe-1.11.2.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": []
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "IFK4aVkQ",
+        "game_versions": [
+            "1.18.2"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/IFK4aVkQ/lunade-copper-pipe-1.11.2-1.18.2.jar",
+                "filename": "lunade-copper-pipe-1.11.2-1.18.2.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": []
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "11GEdRk8",
+        "game_versions": [
+            "1.19",
+            "1.19.1",
+            "1.19.2"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/11GEdRk8/lunade-copper-pipe-1.11.1.jar",
+                "filename": "lunade-copper-pipe-1.11.1.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": []
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "BwnW8P6f",
+        "game_versions": [
+            "22w42a"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "alpha",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/BwnW8P6f/lunade-copper-pipe-1.11-22w42a.jar",
+                "filename": "lunade-copper-pipe-1.11-22w42a.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": []
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "NFv8fir1",
+        "game_versions": [
+            "1.18.2"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/NFv8fir1/lunade-copper-pipe-1.11-1.18.2.jar",
+                "filename": "lunade-copper-pipe-1.11-1.18.2.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": []
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "UvQBx25Q",
+        "game_versions": [
+            "1.19",
+            "1.19.1",
+            "1.19.2"
+        ],
+        "loaders": [
+            "fabric",
+            "quilt"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/UvQBx25Q/lunade-copper-pipe-1.11.jar",
+                "filename": "lunade-copper-pipe-1.11.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": []
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "YlUnDpwJ",
+        "game_versions": [
+            "1.19",
+            "1.19.1",
+            "1.19.2"
+        ],
+        "loaders": [
+            "fabric"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/YlUnDpwJ/lunade-copper-pipe-1.11-b5.jar",
+                "filename": "lunade-copper-pipe-1.11-b5.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": []
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "EZNePEz5",
+        "game_versions": [
+            "1.19"
+        ],
+        "loaders": [
+            "fabric"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/1.11b4/lunade-copper-pipe-1.11-b4.jar",
+                "filename": "lunade-copper-pipe-1.11-b4.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": []
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "rHZDMu5E",
+        "game_versions": [
+            "1.18.2"
+        ],
+        "loaders": [
+            "fabric"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/1.11b2-1.18.2/lunade-copper-pipe-1.11b-1.18.2b.jar",
+                "filename": "lunade-copper-pipe-1.11b-1.18.2b.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": []
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "xm6k9R9p",
+        "game_versions": [
+            "1.19"
+        ],
+        "loaders": [
+            "fabric"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/1.11b3/lunade-copper-pipe-1.11-b3.jar",
+                "filename": "lunade-copper-pipe-1.11-b3.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": []
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "iGIHemfG",
+        "game_versions": [
+            "1.19"
+        ],
+        "loaders": [
+            "fabric"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/1.11b2/lunade-copper-pipe-1.11-b2.jar",
+                "filename": "lunade-copper-pipe-1.11-b2.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": []
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "wE0BlO3B",
+        "game_versions": [
+            "1.19"
+        ],
+        "loaders": [
+            "fabric"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/1.11b1/lunade-copper-pipe-1.11-b1.jar",
+                "filename": "lunade-copper-pipe-1.11-b1.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": []
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "u5nPBEmk",
+        "game_versions": [
+            "1.19"
+        ],
+        "loaders": [
+            "fabric"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/1.11a6/lunade-copper-pipe-1.11-a6.jar",
+                "filename": "lunade-copper-pipe-1.11-a6.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": []
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "xUGzErST",
+        "game_versions": [
+            "1.18.2"
+        ],
+        "loaders": [
+            "fabric"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/1.11a1.18.2/lunade-copper-pipe-1.11-a1.18.2.jar",
+                "filename": "lunade-copper-pipe-1.11-a1.18.2.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": []
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "ApzBa6Up",
+        "game_versions": [
+            "1.19"
+        ],
+        "loaders": [
+            "fabric"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/1.11a5b/lunade-copper-pipe-1.11-a5b.jar",
+                "filename": "lunade-copper-pipe-1.11-a5b.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": []
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "oNYFCFUh",
+        "game_versions": [
+            "1.19"
+        ],
+        "loaders": [
+            "fabric"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/1.11a5/lunade-copper-pipe-1.11-a5.jar",
+                "filename": "lunade-copper-pipe-1.11-a5.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": []
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "5IIpPDM4",
+        "game_versions": [
+            "1.19"
+        ],
+        "loaders": [
+            "fabric"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/1.11a4c/lunade-copper-pipe-1.11-a4c.jar",
+                "filename": "lunade-copper-pipe-1.11-a4c.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": []
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "IvsYaD7N",
+        "game_versions": [
+            "1.19"
+        ],
+        "loaders": [
+            "fabric"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/1.11a4b/lunade-copper-pipe-1.11-a4b.jar",
+                "filename": "lunade-copper-pipe-1.11-a4b.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": []
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "7oWoFnBM",
+        "game_versions": [
+            "1.19"
+        ],
+        "loaders": [
+            "fabric"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/1.11a4/lunade-copper-pipe-1.11-a4.jar",
+                "filename": "lunade-copper-pipe-1.11-a4.jar",
+                "primary": false
+            }
+        ],
+        "dependencies": []
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "fHEx49EB",
+        "game_versions": [
+            "1.19"
+        ],
+        "loaders": [
+            "fabric"
+        ],
+        "version_type": "alpha",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/1.11a3/lunade-copper-pipe-1.11-a3.jar",
+                "filename": "lunade-copper-pipe-1.11-a3.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": []
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "Xa9zwGHR",
+        "game_versions": [
+            "1.18.2"
+        ],
+        "loaders": [
+            "fabric"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/1.9/lunade-copper-pipe-r1.9.jar",
+                "filename": "lunade-copper-pipe-r1.9.jar",
+                "primary": true
+            }
+        ],
+        "dependencies": []
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "gtuWYWeg",
+        "game_versions": [
+            "1.18.1"
+        ],
+        "loaders": [
+            "fabric"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/r1.9.1/lunade-copper-pipe-r1.9.jar",
+                "filename": "lunade-copper-pipe-r1.9.jar",
+                "primary": false
+            }
+        ],
+        "dependencies": []
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "kHxswnXH",
+        "game_versions": [
+            "1.18.1"
+        ],
+        "loaders": [
+            "fabric"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/r1.9/lunade-copper-pipe-r1.9.jar",
+                "filename": "lunade-copper-pipe-r1.9.jar",
+                "primary": false
+            }
+        ],
+        "dependencies": []
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "oY1ZBxOw",
+        "game_versions": [
+            "1.18.1"
+        ],
+        "loaders": [
+            "fabric"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/r1.8/lunade-copper-pipe-r1.8.jar",
+                "filename": "lunade-copper-pipe-r1.8.jar",
+                "primary": false
+            }
+        ],
+        "dependencies": []
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "Pjyvl2ag",
+        "game_versions": [
+            "1.18.1"
+        ],
+        "loaders": [
+            "fabric"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/r1.7/lunade-copper-pipe-r1.7.jar",
+                "filename": "lunade-copper-pipe-r1.7.jar",
+                "primary": false
+            }
+        ],
+        "dependencies": []
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "6efDyM2A",
+        "game_versions": [
+            "1.18.1"
+        ],
+        "loaders": [
+            "fabric"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/r1.6/lunade-copper-pipe-r1.6.jar",
+                "filename": "lunade-copper-pipe-r1.6.jar",
+                "primary": false
+            }
+        ],
+        "dependencies": []
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "UlfOnH3U",
+        "game_versions": [
+            "1.18.1"
+        ],
+        "loaders": [
+            "fabric"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/r1.5/lunade-copper-pipe-r1.5.jar",
+                "filename": "lunade-copper-pipe-r1.5.jar",
+                "primary": false
+            }
+        ],
+        "dependencies": []
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "3MIOHabl",
+        "game_versions": [
+            "1.18.1"
+        ],
+        "loaders": [
+            "fabric"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/r1.4/lunade-copper-pipe-r1.4.jar",
+                "filename": "lunade-copper-pipe-r1.4.jar",
+                "primary": false
+            }
+        ],
+        "dependencies": []
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "kAxbFORu",
+        "game_versions": [
+            "1.18.1"
+        ],
+        "loaders": [
+            "fabric"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/r1.3.1/lunade-copper-pipe-r1.3.jar",
+                "filename": "lunade-copper-pipe-r1.3.jar",
+                "primary": false
+            }
+        ],
+        "dependencies": []
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "eW1laNA4",
+        "game_versions": [
+            "1.18.1"
+        ],
+        "loaders": [
+            "fabric"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/r1.3/lunade-copper-pipe-r1.3.jar",
+                "filename": "lunade-copper-pipe-r1.3.jar",
+                "primary": false
+            }
+        ],
+        "dependencies": []
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "3qmJSzdh",
+        "game_versions": [
+            "1.18.1"
+        ],
+        "loaders": [
+            "fabric"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/r1.2/lunade-copper-pipe-r1.2.jar",
+                "filename": "lunade-copper-pipe-r1.2.jar",
+                "primary": false
+            }
+        ],
+        "dependencies": []
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "Sx9X49lI",
+        "game_versions": [
+            "1.18.1"
+        ],
+        "loaders": [
+            "fabric"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/r1.1/lunade-copper-pipe-r1.1.jar",
+                "filename": "lunade-copper-pipe-r1.1.jar",
+                "primary": false
+            }
+        ],
+        "dependencies": []
+    },
+    {
+        "project_id": "simple-copper-pipes",
+        "id": "AQBkrhtl",
+        "game_versions": [
+            "1.18.1"
+        ],
+        "loaders": [
+            "fabric"
+        ],
+        "version_type": "release",
+        "files": [
+            {
+                "url": "https://cdn.modrinth.com/data/9r4ZkgSN/versions/r1.0/lunade-copper-pipe-r1.0.jar",
+                "filename": "lunade-copper-pipe-r1.0.jar",
+                "primary": false
+            }
+        ],
+        "dependencies": []
+    }
+]

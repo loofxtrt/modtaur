@@ -192,12 +192,6 @@ def resolve_dependencies(dependencies: list[Dependency], parent_slug: str, ctx: 
 
     logger.debug(parent_slug, title='resolve dependencies')
 
-    dir_mods = ctx.dir_mods
-
-    if not dir_mods.is_dir():
-        logger.error(f'{dir_mods} não é um diretório')
-        return
-
     if len(dependencies) == 0:
         return
 
@@ -268,13 +262,10 @@ def resolve_project_downloading(
 
     # construção de caminhos de pré-baixados e cache
     # + s no final mod -> mods, resourcepack -> resourcepacks
-    cached_dest = cache_root / (project_type + 's') / version
+    dir_cached = cache_root / (project_type + 's') / version
     if is_dependency_for is not None:
-        cached_dest = cached_dest / 'dependencies'
-    ensure_directory(cached_dest)
-
-    cache_version_dir = ctx.dir_cache_version_lists
-    123[] #FIXME cache_version_dir.mkdir(exist_ok=True, parents=True)
+        dir_cached = dir_cached / 'dependencies'
+    ensure_directory(dir_cached)
 
     # definir argumentos pro log
     nerdfont_icon = logger.DEFAULT_NERDFONT_ICON
@@ -285,7 +276,7 @@ def resolve_project_downloading(
 
     # tentar obter o projeto pelo cache e pelo diretório de pré-baixados
     # antes de tentar fazer uma requisição pra api e baixar pela web
-    version_list = get_cached_version_list(id, cache_version_dir)
+    version_list = get_cached_version_list(id, cache_root)
     if version_list:
         compatible = get_compatible_version(version_list, project, ctx)
         if compatible:
@@ -297,8 +288,11 @@ def resolve_project_downloading(
                     _install_predownloaded(f, dependencies)
                     return
 
+    # se não tiver obtido os dados pelo cache, requisita pra api
+    # também escreve a versão atualizada da lista de versions do projeto
     version_list = get_version_list(slug)
-    write_version_list_cache(version_list, cache_version_dir / f'{slug}.json')
+    write_version_list_cache(version_list, cache_root / 'version-lists' / f'{slug}.json')
+    
     compatible = get_compatible_version(version_list, project, ctx)
     if not compatible:
         return
@@ -322,4 +316,5 @@ def resolve_project_downloading(
         dest = download_file(url, filename, dir_destination)
     
     # copiar pro diretório de já baixados pra não precisar baixar de novo
-    shutil.copy2(dest, subdown)
+    copy_dest = dir_cached / filename
+    shutil.copy2(dest, copy_dest)

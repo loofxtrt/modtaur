@@ -102,13 +102,14 @@ def load_modpack(
     ):
     logger.debug(modpack, title='load')
     
-    if not _is_modpack_valid(modpack):
-        return
-    
     # obter os dados do modpack
     modpack = _normalize_json_path(modpack)
-    data = read_json(modpack)
+    
+    if not _is_modpack_valid(modpack):
+        return
 
+    data = read_json(modpack)
+    
     version = data.get('version')
     loader = data.get('loader')
 
