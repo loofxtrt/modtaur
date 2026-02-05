@@ -22,7 +22,9 @@
         "female-gender",
         "3dskinlayers",
         "dark-loading-screen",
-        "entityculling"
+        "entityculling",
+        "fog",
+        "coordinates-display"
     ],
     "resourcepacks": [
         "enhancedvisual-pixelated",
@@ -51,6 +53,7 @@
         "just-fancy-torches",
         "better-boat",
         "go-fish",
-        "better-leaves"
+        "better-leaves",
+        "new-redstone-torch-color-fix"
     ]
 }
