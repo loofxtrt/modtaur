@@ -24,7 +24,8 @@
         "dark-loading-screen",
         "entityculling",
         "fog",
-        "coordinates-display"
+        "coordinates-display",
+        "fpsdisplay"
     ],
     "resourcepacks": [
         "enhancedvisual-pixelated",
